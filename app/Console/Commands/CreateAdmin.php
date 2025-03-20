@@ -26,10 +26,12 @@ class CreateAdmin extends Command
      */
     public function handle()
     {
-        User::factory()->create([
+        $admin = User::factory()->create([
             'name' => $this->option('name'),
             'email' => $this->option('email'),
             'password' => Hash::make($this->option('password')),
         ]);
+        $admin->assignRole(roles: 'admin');
+
     }
 }
