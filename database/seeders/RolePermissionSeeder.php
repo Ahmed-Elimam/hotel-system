@@ -14,11 +14,11 @@ class RolePermissionSeeder extends Seeder
     public function run(): void
     {
         // Create roles
-        $adminRole = Role::create(['name' => 'admin']);
-        $managerRole = Role::create(['name' => 'manager']);
-        $receptionistRole = Role::create(['name' => 'receptionist']);
-        $clientRole = Role::create(['name' => 'client']);
-        $pendingClientRole = Role::create(['name' => 'pending-client']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $managerRole = Role::firstOrCreate(['name' => 'manager']);
+        $receptionistRole = Role::firstOrCreate(['name' => 'receptionist']);
+        $clientRole = Role::firstOrCreate(['name' => 'client']);
+        $pendingClientRole = Role::firstOrCreate(['name' => 'pending-client']);
 
         // Create permissions
         $permissions = [
@@ -44,7 +44,7 @@ class RolePermissionSeeder extends Seeder
 
         // Assign specific permissions to Manager
         $managerRole->givePermissionTo([
-            'manage-receptionists', 'view-all-clients', 'manage-clients','approve-clients',
+            'manage-receptionists', 'manage-clients','approve-clients',
             'manage-floors', 'manage-rooms'
         ]);
         
