@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -19,20 +18,44 @@ class RolePermissionSeeder extends Seeder
         $managerRole = Role::create(['name' => 'manager']);
         $receptionistRole = Role::create(['name' => 'receptionist']);
         $clientRole = Role::create(['name' => 'client']);
+        $pendingClientRole = Role::create(['name' => 'pending-client']);
 
         // Create permissions
-        $manageManagers = Permission::create(['name' => 'manage-managers']);
-        $manageReceptionists = Permission::create(['name' => 'manage-receptionists']);
-        $manageAllReceptionists = Permission::create(['name' => 'manage-all-receptionists']);
-        $manageClients = Permission::create(['name' => 'manage-clients']);
-        $manageFloors = Permission::create(['name' => 'manage-floors']);
-        $manageRooms = Permission::create(['name' => 'manage-rooms']);
-        $manageReservations = Permission::create(['name' => 'manage-reservations']);
+        $permissions = [
+            'manage-managers',
+            'manage-receptionists',
+            'manage-all-receptionists',
+            'manage-clients',
+            'approve-clients',
+            'view-my-approved-clients',
+            'manage-floors',
+            'manage-rooms',
+            'manage-reservations',
+            'view-my-reservations',
+            'make-reservation',
+        ];
 
-        // Assign permissions to roles
-        $adminRole->givePermissionTo([$manageManagers, $manageReceptionists, $manageAllReceptionists, $manageClients, $manageFloors, $manageRooms, $manageReservations]);
-        $managerRole->givePermissionTo([$manageFloors, $manageRooms, $manageReceptionists]);
-        $receptionistRole->givePermissionTo([$manageClients, $manageReservations]);
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
 
+        // Assign all permissions to Admin
+        $adminRole->givePermissionTo(Permission::all());
+
+        // Assign specific permissions to Manager
+        $managerRole->givePermissionTo([
+            'manage-receptionists', 'view-all-clients', 'manage-clients','approve-clients',
+            'manage-floors', 'manage-rooms'
+        ]);
+        
+        // Assign specific permissions to Receptionist
+        $receptionistRole->givePermissionTo([
+            'approve-clients', 'view-my-approved-clients', 'manage-reservations'
+        ]);
+
+        // Assign specific permissions to Client
+        $clientRole->givePermissionTo([
+            'view-my-reservations', 'make-reservation'
+        ]);
     }
 }

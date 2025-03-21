@@ -62,11 +62,20 @@ class ManagerController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
+        $user = User::findOrFail($id);
+
         $name = $request->name;
         $email = $request->email;
         $national_id = $request->national_id;
-
-        $user = User::findOrFail($id);
+        if ($request->hasFile('avatar_image')) {
+            // Delete old avatar if it's not the default one
+            if ($user->avatar_image && $user->avatar_image !== 'avatar.jpg') {
+                \Storage::disk('public')->delete($user->avatar_image);
+            }
+            // Store new avatar
+            $avatarPath = $request->file('avatar_image')->store('avatars', 'public');
+            $user->update(['avatar_image' => $avatarPath]);
+        }
         $user->update(['name' => $name, 'email' => $email, 'national_id' => $national_id,]);
         return to_route('managers.index');
     }

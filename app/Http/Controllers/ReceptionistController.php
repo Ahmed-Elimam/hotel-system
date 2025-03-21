@@ -62,15 +62,23 @@ class ReceptionistController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $receptionist = User::findOrFail($id);
-        if($receptionist->creator_id !== auth()->id() && auth()->user()->cannot('manage-all-receptionists')) {
+        $user = User::findOrFail($id);
+        if($user->creator_id !== auth()->id() && auth()->user()->cannot('manage-all-receptionists')) {
             abort(403);
         }
         $name = $request->name;
         $email = $request->email;
         $national_id = $request->national_id;
-
-        $receptionist->update(['name' => $name, 'email' => $email, 'national_id' => $national_id,]);
+        if ($request->hasFile('avatar_image')) {
+            // Delete old avatar if it's not the default one
+            if ($user->avatar_image && $user->avatar_image !== 'avatar.jpg') {
+                \Storage::disk('public')->delete($user->avatar_image);
+            }
+            // Store new avatar
+            $avatarPath = $request->file('avatar_image')->store('avatars', 'public');
+            $user->update(['avatar_image' => $avatarPath]);
+        }
+        $user->update(['name' => $name, 'email' => $email, 'national_id' => $national_id,]);
         return to_route('receptionists.index');
     }
 
