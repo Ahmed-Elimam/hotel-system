@@ -39,21 +39,20 @@ class ManagerController extends Controller
         } else {
             $avatar_image = 'avatar.jpg';
         }
-
-        $user = User::create([
+       $user = User::create([
             'name' => $name, 
             'email' => $email, 
             'password' => $password, 
             'national_id' => $national_id, 
             'avatar_image' => $avatar_image,
-            'creator_id' => auth()->id(),
+            // 'creator_id' => auth()->id(),
         ]);
         $user->assignRole('manager');
         return to_route('managers.index');
     }
     public function edit($id)
     {
-        $manager = User::find($id);
+        $manager = User::findOrFail($id); 
         return Inertia::render('Managers/Edit', ['row' => $manager]);
     }
 
@@ -70,7 +69,7 @@ class ManagerController extends Controller
         if ($request->hasFile('avatar_image')) {
             // Delete old avatar if it's not the default one
             if ($user->avatar_image && $user->avatar_image !== 'avatar.jpg') {
-                \Storage::disk('public')->delete($user->avatar_image);
+                Storage::disk('public')->delete($user->avatar_image);
             }
             // Store new avatar
             $avatarPath = $request->file('avatar_image')->store('avatars', 'public');

@@ -73,12 +73,12 @@ class User extends Authenticatable implements BannableInterface
     {
         return $this->belongsTo(User::class, 'approver_id');
     }
-    public function floors()
-    {
-        return $this->hasMany(Floor::class, 'creator_id');
-    }
-    public function reservations()
-    {
-        return $this->hasMany(Reservation::class, 'client_id');
-    }
+    // public function floors()
+    // {
+    //     return $this->hasMany(Floor::class, 'creator_id');
+    // }
+    // public function reservations()
+    // {
+    //     return $this->hasMany(Reservation::class, 'client_id');
+    // }
 }
