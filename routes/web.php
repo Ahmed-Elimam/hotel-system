@@ -8,7 +8,7 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\RoomController;
-
+use App\Http\Controllers\ClientController ; 
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
@@ -37,7 +37,22 @@ Route::middleware(['can:manage-receptionists'])->group(function () {
     Route::delete('/receptionists/{id}',[ReceptionistController::class, 'destroy'])->name('receptionists.destroy');
     Route::post('/receptionists/{id}/ban',[ReceptionistController::class, 'ban'])->name('receptionists.ban');
     Route::post('/receptionists/{id}/unban',[ReceptionistController::class, 'unban'])->name('receptionists.unban');
-    });
+});
+Route::middleware(['can:manage-clients'])->group(function () {
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/clients/{id}/edit',[ClientController::class, 'edit'])->name('clients.edit');
+    Route::put('/clients/{id}',[ClientController::class, 'update'])->name('clients.update');
+    Route::delete('/clients/{id}',[ClientController::class, 'destroy'])->name('clients.destroy');
+});
+Route::middleware(['can:approve-clients'])->group(function () {
+    Route::get('/clients/pending', [ClientController::class, 'pending'])->name('clients.pending');
+    Route::post('/clients/{id}/approve', [ClientController::class, 'approve'])->name('clients.approve');
+    // Route::post('/clients/{id}/reject', [ClientController::class, 'reject'])->name('clients.reject');
+});
+Route::middleware(['can:view-my-approved-clients'])->get('/clients/approved', [ClientController::class, 'approved'])->name('clients.approved');
+
 
 Route::middleware(['can:manage-floors'])->group(function () {
     Route::get('/floor', [FloorController::class,'index'])->name('floors.index') ;
