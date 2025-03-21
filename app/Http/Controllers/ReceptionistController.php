@@ -23,7 +23,7 @@ class ReceptionistController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    
+
     public function create()
     {
         return Inertia::render('Receptionists/Create');
@@ -41,10 +41,10 @@ class ReceptionistController extends Controller
         }
 
         $user = User::create([
-            'name' => $name, 
-            'email' => $email, 
-            'password' => $password, 
-            'national_id' => $national_id, 
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'national_id' => $national_id,
             'avatar_image' => $avatar_image,
             'creator_id' => auth()->id(),
         ]);
@@ -85,7 +85,7 @@ class ReceptionistController extends Controller
         }
         if ($receptionist->avatar_image && $receptionist->avatar_image !== 'avatar.jpg') {
             Storage::disk('public')->delete($receptionist->avatar_image);
-        }   
+        }
         $receptionist->delete();
 
         return response( null, 204);

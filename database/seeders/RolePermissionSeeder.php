@@ -28,11 +28,11 @@ class RolePermissionSeeder extends Seeder
         $manageFloors = Permission::create(['name' => 'manage-floors']);
         $manageRooms = Permission::create(['name' => 'manage-rooms']);
         $manageReservations = Permission::create(['name' => 'manage-reservations']);
-
+        $clientReservation = Permission::create(['name' => 'manage-client-reservation']);
         // Assign permissions to roles
-        $adminRole->givePermissionTo([$manageManagers, $manageReceptionists, $manageAllReceptionists, $manageClients, $manageFloors, $manageRooms, $manageReservations]);
+        $adminRole->givePermissionTo([$manageManagers, $manageReceptionists, $manageAllReceptionists, $manageClients, $manageFloors, $manageRooms, $manageReservations  ]);
         $managerRole->givePermissionTo([$manageFloors, $manageRooms, $manageReceptionists]);
-        $receptionistRole->givePermissionTo([$manageClients, $manageReservations]);
+        $receptionistRole->givePermissionTo([$manageClients, $manageReservations ,   $clientReservation]);
 
     }
 }

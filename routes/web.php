@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\FloorController;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReceptionistController;
+use App\Http\Controllers\RoomController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -35,4 +38,39 @@ Route::middleware(['can:manage-receptionists'])->group(function () {
     Route::post('/receptionists/{id}/ban',[ReceptionistController::class, 'ban'])->name('receptionists.ban');
     Route::post('/receptionists/{id}/unban',[ReceptionistController::class, 'unban'])->name('receptionists.unban');
     });
+
+Route::middleware(['can:manage-floors'])->group(function () {
+    Route::get('/floor', [FloorController::class,'index'])->name('floors.index') ;
+    Route::get('/floor/create', [FloorController::class,'create'])->name('floors.create') ;
+    Route::post('/floor', [FloorController::class,'store'])->name('floors.store') ;
+    Route::get('/floor/{floor}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
+    Route::put('/floor/{floor}', [FloorController::class,'update'])->name('floors.update') ;
+    Route::delete('/floor/{floor}', [FloorController::class,'destory'])->name('floors.destory') ;
+});
+
+Route::middleware(['can:manage-rooms'])->group(function () {
+    Route::get('/room', [RoomController::class,'index'])->name('rooms.index') ;
+    Route::get('/room/create', [RoomController::class,'create'])->name('rooms.create') ;
+    Route::post('/room', [RoomController::class,'store'])->name('rooms.store') ;
+    Route::get('/room/{room}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
+    Route::put('/room/{room}', [RoomController::class,'update'])->name('rooms.update') ;
+    Route::delete('/room/{room}', [RoomController::class,'destory'])->name('rooms.destory') ;
+});
+
+
+Route::middleware(['can:manageReservations'])->group(function () {
+    Route::get('/receptionist/manage-clients', [ReservationController::class, 'manageClients'])->name('receptionist.manage_clients');
+    Route::post('/receptionist/approve-client/{client}', [ReservationController::class, 'approveClient'])->name('receptionist.approve_client');
+    Route::get('/receptionist/my-approved-clients', [ReservationController::class, 'myApprovedClients'])->name('receptionist.my_approved_clients');
+    Route::get('/receptionist/clients-reservations', [ReservationController::class, 'clientsReservations'])->name('receptionist.clients_reservations');
+});
+
+
+Route::middleware(['can:manage-client-reservation'])->group(function () {
+    Route::get('/client/available-rooms', [ReservationController::class, 'availableRooms'])->name('client.available_rooms');
+    Route::get('/client/reservation-form/{room}', [ReservationController::class, 'reservationForm'])->name('client.reservation_form');
+    Route::post('/client/store-reservation/{room}', [ReservationController::class, 'storeReservation'])->name('client.store_reservation');
+    Route::get('/client/my-reservations', [ReservationController::class, 'myReservations'])->name('client.my_reservations');
+});
+
 
