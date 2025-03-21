@@ -8,14 +8,19 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreReservationRequest;
 
 use App\Models\Room;
+use App\Models\User;
 class ReservationController extends Controller
 {
         public function manageClients(){
-            $clients = Client::where('is_approved',false)->get();
+            $clients = User::with(['reservations' => function($query) {
+                $query->where('is_approved', false);
+            }])->get();
             return Inertia::render('Receptionist/ManageClients', [ 'clients'=>$clients  ]);
         }
         public function myApprovedClients(){
-            $clients = Client::where('is_approved',true)->get();
+            $clients =User::with(['reservations' => function($query) {
+                $query->where('is_approved', false)->where('approved_by', Auth::id());
+            }])->get();
 
             return Inertia::render('Receptionist/MyApprovedClients', [
                 'clients' => $clients,
