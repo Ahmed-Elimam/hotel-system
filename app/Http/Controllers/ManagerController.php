@@ -84,7 +84,7 @@ class ManagerController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::findOrFail($id); // Prevents errors if user not found
+        $user = User::findOrFail($id); 
 
         if ($user->avatar_image && $user->avatar_image !== 'avatar.jpg') {
             Storage::disk('public')->delete($user->avatar_image);
@@ -92,5 +92,6 @@ class ManagerController extends Controller
         $user->delete();
 
         return response( null, 204);
+                         
     }
 }

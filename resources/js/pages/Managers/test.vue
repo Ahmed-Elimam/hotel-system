@@ -1,153 +1,120 @@
-<script setup>
-import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
-import { toast } from 'vue-sonner';
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from "@/components/ui/alert-dialog";
-import { Link } from "@inertiajs/vue3";
-
-const form = useForm({
-  name: "",
-  email: "",
-  password: "",
-  password_confirmation: "",
-  national_id: "",
-  avatar_image: null,
-});
-
-const imagePreview = ref("");
-const showPassword = ref(false);
-
-const handleImageChange = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    form.avatar_image = file;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      imagePreview.value = e.target.result;
-    };
-    reader.readAsDataURL(file);
-  }
-};
-
-
-const onSubmit = () => {
-  form.post(route('managers.store'), {
-    preserveScroll: true,
-    onSuccess: () => {
-      toast.success("Manager created successfully!");
-      console.log("s")
-      form.reset();
-      imagePreview.value = "";
-    },
-    onError: (errors) => {
-      toast.error("Please fix the errors in the form.");
-      console.log("f",errors)
-    },
-  });
-};
-
-const confirmReset = () => {
-  form.reset();
-  imagePreview.value = "";
-  toast.info("Form has been reset");
-};
-</script>
 <template>
-  <div class="max-w-5xl mx-auto space-y-6 p-6">
+  <Head title="Managers" />
+
+  <AppLayout :breadcrumbs="breadcrumbs">
+  <div class="p-6 space-y-6">
+    <h1 class="text-2xl font-semibold">Manage Managers</h1>
+
+ 
+    <Button class="bg-green-600 hover:bg-green-700">
+      <Link  :href="route('managers.create')" method="get">Add Manager</Link>
+    </Button>
+
+  
     <Card>
-      <CardContent class="p-6">
-        <h1 class="text-2xl font-bold mb-6">Create New Manager</h1>
+      <CardContent class="overflow-x-auto">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>ID</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead>National ID</TableHead>
+              <TableHead>Avatar</TableHead>
+              <TableHead>Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow v-for="manager in rows" :key="manager.id">
+              <TableCell>{{ manager.id }}</TableCell>
+              <TableCell>{{ manager.name }}</TableCell>
+              <TableCell>{{ manager.email }}</TableCell>
+              <TableCell>{{ manager.national_id }}</TableCell>
+              <TableCell>
+                <Avatar>
+                  <AvatarImage v-if="manager.avatar_image" :src="`/storage/${manager.avatar_image}`" alt="Avatar" />
 
-        <form @submit.prevent="onSubmit">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-            <div class="space-y-4">
-              <div>
-                <label class="font-medium">Full Name</label>
-                <Input v-model="form.name" placeholder="Enter full name" />
-                <p v-if="form.errors.name" class="text-red-500 text-sm">{{ form.errors.name }}</p>
-              </div>
-              
-              <div>
-                <label class="font-medium">Email</label>
-                <Input v-model="form.email" type="email" placeholder="Enter email address" />
-                <p v-if="form.errors.email" class="text-red-500 text-sm">{{ form.errors.email }}</p>
-              </div>
-
-              <div>
-                <label class="font-medium">National ID</label>
-                <Input v-model="form.national_id" placeholder="Enter national ID" />
-                <p v-if="form.errors.national_id" class="text-red-500 text-sm">{{ form.errors.national_id }}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex flex-col md:flex-row gap-6 items-center mt-6">
-            <div class="w-full md:w-1/2">
-              <label class="font-medium">Avatar Image</label>
-              <Input type="file" accept="image/*" @change="handleImageChange" />
-            </div>
-
-            <div class="flex justify-center">
-              <Avatar class="w-32 h-32">
-                <AvatarImage :src="imagePreview" />
-                <AvatarFallback>?</AvatarFallback>
-              </Avatar>
-              <p v-if="form.errors.avatar_image" class="text-red-500 text-sm">{{ form.errors.avatar_image }}</p>
-            </div>
-          </div>
-
-          <div class="mt-6">
-            <label class="font-medium">Password</label>
-            <div class="flex">
-              <Input :type="showPassword ? 'text' : 'password'" v-model="form.password" placeholder="Enter password" class="flex-1"/>
-              <Button type="button" variant="outline" class="ml-2" @click="showPassword = !showPassword">
-                {{ showPassword ? 'Hide' : 'Show' }}
-              </Button>
-              <p v-if="form.errors.password" class="text-red-500 text-sm">{{ form.errors.password }}</p>
-            </div>
-          </div>
-          <div class="mt-6">
-            <label class="font-medium">Password Confirmation</label>
-            <div class="flex">
-              <Input :type="showPassword ? 'text' : 'password'" v-model="form.password_confirmation" placeholder="Confirm password" class="flex-1"/>
-              <Button type="button" variant="outline" class="ml-2" @click="showPassword = !showPassword">
-                {{ showPassword ? 'Hide' : 'Show' }}
-              </Button>
-              <p v-if="form.errors.password_confirmation" class="text-red-500 text-sm">{{ form.errors.password_confirmation }}</p>
-            </div>
-          </div>
-          
-          <div class="flex justify-center space-x-4 mt-8">
-            <Button type="submit" class="bg-blue-600 hover:bg-blue-700">Create Manager</Button>
-
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button type="button" variant="destructive">Reset</Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This will clear all form fields. Any entered data will be lost.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction @click="confirmReset">Continue</AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-
-            <Link :href="route('managers.index')">
-              <Button variant="outline">Back to List</Button>
-            </Link>
-          </div>
-        </form>
+                </Avatar>
+              </TableCell>
+              <TableCell class="space-x-2">
+                <!-- <Button variant="outline" @click="viewManager(manager)">View</Button> -->
+                <Button class="bg-yellow-500 text-black hover:bg-yellow-600">
+                  <Link :href="route('managers.edit', manager.id)" method="get">Update</Link>
+                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button type="button" variant="destructive">Delete</Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Are you sure you want to delete this record
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction>
+                        <Link  @click.prevent="handleDelete(manager.id)"  as="button">
+                        Continue
+                        </Link>
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </CardContent>
     </Card>
   </div>
+</AppLayout>
 </template>
+
+
+<script setup>
+import { Link, usePage } from "@inertiajs/vue3";
+
+const page = usePage();
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from "@/components/ui/alert-dialog";
+const props = defineProps({
+  rows: Array,
+});
+import axios from "axios";
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
+
+const handleDelete = function (id) {
+    
+        axios.delete(route('managers.destroy', id)) 
+            .then(response => {
+                if (response.status === 204) {
+                  toast.success("record deleted successfully.");
+                  setTimeout(() => location.reload(), 3000);
+                  
+                }
+            })
+            .catch(error => {
+                toast.error("An error occurred while deleting the record.");
+                console.error("Error:", error);
+            });
+    
+};
+import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+import { Head } from '@inertiajs/vue3';
+
+const breadcrumbs = [
+    {
+        title: 'Managers',
+        href: '/managers',
+    },
+];
+
+</script>

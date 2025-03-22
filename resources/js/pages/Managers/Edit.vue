@@ -14,6 +14,16 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 
+import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+import { Head } from '@inertiajs/vue3';
+
+const breadcrumbs = [
+    {
+        title: 'Edit Manager Data',
+        href: '/Edit',
+    },
+];
 const props = defineProps({
   row: Object, 
 });
@@ -69,6 +79,9 @@ const confirmReset = () => {
 </script>
 
 <template>
+  <Head title="Edit manager data" />
+
+<AppLayout :breadcrumbs="breadcrumbs">
   <div class="max-w-5xl mx-auto space-y-6 p-6">
     <Card>
       <CardContent class="p-6">
@@ -305,5 +318,7 @@ const confirmReset = () => {
       </CardContent>
     </Card>
   </div>
+</AppLayout>
+
 </template> 
  

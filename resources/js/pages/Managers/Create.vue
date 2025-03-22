@@ -59,9 +59,22 @@ const confirmReset = () => {
   imagePreview.value = "";
   toast.info("Form has been reset");
 };
+import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+import { Head } from '@inertiajs/vue3';
+
+const breadcrumbs = [
+    {
+        title: 'Add new Manager',
+        href: '/add',
+    },
+];
 </script>
 
 <template>
+  <Head title="Managers" />
+
+<AppLayout :breadcrumbs="breadcrumbs">
   <div class="max-w-5xl mx-auto space-y-6 p-6">
     <Card>
       <CardContent class="p-6">
@@ -298,5 +311,7 @@ const confirmReset = () => {
       </CardContent>
     </Card>
   </div>
+</AppLayout>
+
 </template> 
  
