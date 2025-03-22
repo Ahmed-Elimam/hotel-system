@@ -8,7 +8,8 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\RoomController;
-use App\Http\Controllers\ClientController ; 
+use App\Http\Controllers\ClientController ;
+use App\Models\User;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
@@ -58,22 +59,22 @@ Route::middleware(['can:manage-floors'])->group(function () {
     Route::get('/floor', [FloorController::class,'index'])->name('floors.index') ;
     Route::get('/floor/create', [FloorController::class,'create'])->name('floors.create') ;
     Route::post('/floor', [FloorController::class,'store'])->name('floors.store') ;
-    Route::get('/floor/{floor}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
-    Route::put('/floor/{floor}', [FloorController::class,'update'])->name('floors.update') ;
-    Route::delete('/floor/{floor}', [FloorController::class,'destory'])->name('floors.destory') ;
+    Route::get('/floor/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
+    Route::put('/floor/{id}', [FloorController::class,'update'])->name('floors.update') ;
+    Route::delete('/floor/{id}', [FloorController::class,'destory'])->name('floors.destory') ;
 });
 
 Route::middleware(['can:manage-rooms'])->group(function () {
     Route::get('/room', [RoomController::class,'index'])->name('rooms.index') ;
     Route::get('/room/create', [RoomController::class,'create'])->name('rooms.create') ;
     Route::post('/room', [RoomController::class,'store'])->name('rooms.store') ;
-    Route::get('/room/{room}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
-    Route::put('/room/{room}', [RoomController::class,'update'])->name('rooms.update') ;
-    Route::delete('/room/{room}', [RoomController::class,'destory'])->name('rooms.destory') ;
+    Route::get('/room/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
+    Route::put('/room/{id}', [RoomController::class,'update'])->name('rooms.update') ;
+    Route::delete('/room/{id}', [RoomController::class,'destory'])->name('rooms.destory') ;
 });
 
 
-Route::middleware(['can:manageReservations'])->group(function () {
+Route::middleware(['can:manage-reservations'])->group(function () {
     Route::get('/receptionist/manage-clients', [ReservationController::class, 'manageClients'])->name('receptionist.manage_clients');
     Route::post('/receptionist/approve-client/{client}', [ReservationController::class, 'approveClient'])->name('receptionist.approve_client');
     Route::get('/receptionist/my-approved-clients', [ReservationController::class, 'myApprovedClients'])->name('receptionist.my_approved_clients');
@@ -89,3 +90,11 @@ Route::middleware(['can:manage-client-reservation'])->group(function () {
 });
 
 
+Route::get('/notifications', function () {
+    $user = User::orderBy('id', 'desc')->first();
+
+    return response()->json([
+        'unread' => $user->unreadNotifications,
+        'all' => $user->notifications
+    ]);
+});

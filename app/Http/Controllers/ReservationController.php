@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreReservationRequest;
+use App\Notifications\ClientApprovedNotification;
 
 use App\Models\Room;
 use App\Models\User;
@@ -27,14 +28,14 @@ class ReservationController extends Controller
             ]);
 
         }
-        public function approveClient(Client $client)
+        public function approveClient(User $client)
     {
 
         $client->update([
             'is_approved' => true,
             'approved_by' => Auth::id(),
         ]);
-
+        $client->notify(new ClientApprovedNotification($client));
         return redirect()->route('receptionist.manage_clients')->with('success', 'Client approved successfully.');
     }
 

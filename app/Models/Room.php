@@ -19,6 +19,7 @@ class Room extends Model
         'is_reserved' => false,
     ];
 
+
     public function floor()
     {
         return $this->belongsTo(Floor::class, 'floor_id');
@@ -28,6 +29,7 @@ class Room extends Model
     {
         return Carbon::parse($this->created_at)->format('Y-m-d');
     }
+
 
     public function creator()
     {

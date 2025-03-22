@@ -43,8 +43,9 @@ class RoomController extends Controller
        return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
     }
 
-    public function edit(Room $room){
-        if ($room->room_creator_id !== auth()->id() && auth()->user()->cannot('manage-rooms')) {
+    public function edit($id){
+        $room = Room::findOrFail($id);
+        if ($room->room_creator_id !== auth()->id() && auth()->user()->cannot('manage-all-rooms')) {
             abort(403);
         }
         return Inertia::render('Rooms/Edit', ['row' => $room]);
@@ -52,21 +53,22 @@ class RoomController extends Controller
 
 
 
-         public function update(UpdateRoomRequest $request, Room $room)
+         public function update(UpdateRoomRequest $request, $id)
          {
+            $room = Room::findOrFail($id);
              $room->update($request->only('capacity', 'price', 'is_reserved'));
 
              return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
          }
 
-         public function destroy(Room $room){
-
+         public function destroy($id){
+            $room = Room::findOrFail($id);
             if($room->room_creator_id !== auth()->id() && auth()->user()->cannot('manage-rooms')) {
 
                 abort(403);
 
             }
             $room->delete();
-            return redirect()->route('rooms.index')->with('success', 'Room deleted successfully.');
+           return response( null, 204);
          }
     }
