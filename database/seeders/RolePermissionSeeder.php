@@ -29,13 +29,13 @@ class RolePermissionSeeder extends Seeder
             'approve-clients',
             'view-my-approved-clients',
             'manage-floors',
+            'manage-all-floors',
             'manage-rooms',
+            'manage-all-rooms',
             'manage-reservations',
             'view-my-reservations',
             'make-reservation',
             'manage-client-reservation',
-            'manage-all-floors',
-            'manage-all-rooms'
         ];
 
         foreach ($permissions as $permission) {
