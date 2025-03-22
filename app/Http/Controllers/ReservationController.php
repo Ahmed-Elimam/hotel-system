@@ -12,23 +12,23 @@ use App\Models\Room;
 use App\Models\User;
 class ReservationController extends Controller
 {
-        public function manageClients(){
-            $clients = User::with(['reservations' => function($query) {
-                $query->where('is_approved', false);
-            }])->get();
-            return Inertia::render('Receptionist/ManageClients', [ 'clients'=>$clients  ]);
-        }
-        public function myApprovedClients(){
-            $clients =User::with(['reservations' => function($query) {
-                $query->where('is_approved', false)->where('approved_by', Auth::id());
-            }])->get();
+    public function manageClients(){
+        $clients = User::with(['reservations' => function($query) {
+            $query->where('is_approved', false);
+        }])->get();
+        return Inertia::render('Receptionist/ManageClients', [ 'clients'=>$clients  ]);
+    }
+    public function myApprovedClients(){
+        $clients =User::with(['reservations' => function($query) {
+            $query->where('is_approved', false)->where('approved_by', Auth::id());
+        }])->get();
 
-            return Inertia::render('Receptionist/MyApprovedClients', [
-                'clients' => $clients,
-            ]);
+        return Inertia::render('Receptionist/MyApprovedClients', [
+            'clients' => $clients,
+        ]);
 
-        }
-        public function approveClient(User $client)
+    }
+    public function approveClient(User $client)
     {
 
         $client->update([

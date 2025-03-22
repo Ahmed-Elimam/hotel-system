@@ -48,11 +48,17 @@ class FloorController extends Controller
         return redirect()->route('floors.index');
     }
     public function destroy($id){
+        
         $floor= Floor::findOrFail($id) ;
         if($floor->creator_id !== auth()->id() && auth()->user()->cannot('manage-all-floors')) {
             abort(403);
         }
+        if($floor->rooms()->exists()){
+            return response('This floor has rooms, you can not delete it', 409);
+        }
+        else{
         $floor->delete();
-        return response( null, 204);
+        return response(null, 204);
+        }
     }
 }

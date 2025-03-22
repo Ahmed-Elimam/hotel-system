@@ -17,6 +17,10 @@ class Floor extends Model
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'floor_id'); // Ensure 'floor_id' is the foreign key
+    }
 
     protected static function boot()
     {

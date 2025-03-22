@@ -51,7 +51,6 @@ Route::middleware(['can:manage-clients'])->group(function () {
 Route::middleware(['can:approve-clients'])->group(function () {
     Route::get('/clients/pending', [ClientController::class, 'pending'])->name('clients.pending');
     Route::post('/clients/{id}/approve', [ClientController::class, 'approve'])->name('clients.approve');
-    // Route::post('/clients/{id}/reject', [ClientController::class, 'reject'])->name('clients.reject');
 });
 Route::middleware(['can:view-my-approved-clients'])->get('/clients/approved', [ClientController::class, 'approved'])->name('clients.approved');
 
