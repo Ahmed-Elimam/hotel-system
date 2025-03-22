@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('floor_id')->references('id')->on('floors');//add foriegn key constraints
 
             $table->unsignedBigInteger('room_creator_id');
-            $table->foreign('room_creator_id')->references('creator_id')->on('floors');
+            $table->foreign('room_creator_id')->references('creator_id')->on('users');
             $table->timestamps();
         });
     }

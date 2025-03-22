@@ -36,6 +36,8 @@ class User extends Authenticatable implements BannableInterface
         'gender',
         'country_id',
         'creator_id',
+        'approver_id',
+        'last_login_date',
     ];
 
     /**

@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
         $email = $request->email;
         $password = $request->password;
         $national_id = $request->national_id;
-        $country = $request->country;
+        $country_id = $request->country;
         $phone = $request->phone;
         $gender = $request->gender;
         if ($request->hasFile('avatar_image')) {
@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
             'password' => $password,
             'national_id' => $national_id,
             'avatar_image' => $avatar_image,
-            'country' => $country,
+            'country_id' => $country_id,
             'phone' => $phone,
             'gender'=> $gender,
         ]);
