@@ -16,9 +16,10 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        $managers = User::role('manager')->get();
+        $managers = User::role('manager')->paginate(5);
         return Inertia::render('Managers/Index', ['rows' => $managers]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

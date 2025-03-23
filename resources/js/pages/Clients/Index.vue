@@ -1,41 +1,43 @@
 <template>
-  <Head title="Managers" />
+  <Head title="Clients" />
 
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="p-6 space-y-6">
-      <h1 class="text-2xl font-semibold">Manage Managers</h1>
+      <h1 class="text-2xl font-semibold">Manage Clients</h1>
 
       <Button class="bg-green-600 hover:bg-green-700">
-        <Link :href="route('managers.create')" method="get">Add Manager</Link>
+        <Link :href="route('clients.create')" method="get">Add Client</Link>
       </Button>
 
       <Card>
         <CardContent class="overflow-x-auto">
-          <Table v-if="managers.length">
+          <Table v-if="clients.length">
             <TableHeader>
               <TableRow>
                 <TableHead>ID</TableHead>
                 <TableHead>Name</TableHead>
                 <TableHead>Email</TableHead>
-                <TableHead>National ID</TableHead>
+                <TableHead>Country</TableHead>
+                <TableHead>Gender</TableHead>
                 <TableHead>Avatar</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow v-for="manager in managers" :key="manager.id">
-                <TableCell>{{ manager.id }}</TableCell>
-                <TableCell>{{ manager.name }}</TableCell>
-                <TableCell>{{ manager.email }}</TableCell>
-                <TableCell>{{ manager.national_id }}</TableCell>
+              <TableRow v-for="client in clients" :key="client.id">
+                <TableCell>{{ client.id }}</TableCell>
+                <TableCell>{{ client.name }}</TableCell>
+                <TableCell>{{ client.email }}</TableCell>
+                <TableCell>{{ client.country ? client.country.name : 'N/A' }}</TableCell>
+                <TableCell>{{ client.gender }}</TableCell>
                 <TableCell>
-                  <Avatar v-if="manager.avatar_image">
-                    <AvatarImage :src="`/storage/${manager.avatar_image}`" alt="Avatar" />
+                  <Avatar v-if="client.avatar_image">
+                    <AvatarImage :src="`/storage/${client.avatar_image}`" alt="Avatar" />
                   </Avatar>
                 </TableCell>
                 <TableCell class="space-x-2">
                   <Button class="bg-yellow-500 text-black hover:bg-yellow-600 m-2 inline-flex items-center justify-center">
-                    <Link :href="route('managers.edit', manager.id)" method="get" class="w-full h-full flex items-center justify-center">
+                    <Link :href="route('clients.edit', client.id)" method="get" class="w-full h-full flex items-center justify-center">
                       Update
                     </Link>
                   </Button>
@@ -56,7 +58,7 @@
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction>
-                          <Button @click.prevent="handleDelete(manager.id)">Continue</Button>
+                          <Button @click.prevent="handleDelete(client.id)">Continue</Button>
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -65,15 +67,16 @@
               </TableRow>
             </TableBody>
           </Table>
-          <p v-else class="text-center text-gray-500">No managers found.</p>
+          <p v-else class="text-center text-gray-500">No clients found.</p>
         </CardContent>
       </Card>
 
+      <!-- Pagination Controls -->
       <div class="flex items-center justify-end py-4 space-x-2">
-        <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url" @click="goToPage(props.rows?.current_page - 1)">
+        <Button variant="outline" size="sm" :disabled="!rows?.prev_page_url" @click="goToPage(rows?.current_page - 1)">
           Previous
         </Button>
-        <Button variant="outline" size="sm" :disabled="!props.rows?.next_page_url" @click="goToPage(props.rows?.current_page + 1)">
+        <Button variant="outline" size="sm" :disabled="!rows?.next_page_url" @click="goToPage(rows?.current_page + 1)">
           Next
         </Button>
       </div>
@@ -96,24 +99,23 @@ import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
 const toast = useToast();
 
 const props = defineProps({
-  rows: Object, // Expected to be an object containing paginated data
+  rows: Object, // Expected paginated data
 });
 
-// Ensure we extract data correctly, regardless of its structure
-const managers = computed(() => {
-  return props.rows?.data || props.rows || []; // Handles both cases: rows.data or rows directly
+const clients = computed(() => {
+  return props.rows?.data || props.rows || [];
 });
 
 const breadcrumbs = [
   {
-    title: 'Managers',
-    href: '/managers',
+    title: 'Clients',
+    href: '/clients',
   },
 ];
 
 const handleDelete = async (id) => {
   try {
-    const response = await axios.delete(route('managers.destroy', id));
+    const response = await axios.delete(route('clients.destroy', id));
     if (response.status === 204) {
       toast.success("Record deleted successfully!", { timeout: 3000 });
       setTimeout(() => location.reload(), 3000);
@@ -126,6 +128,6 @@ const handleDelete = async (id) => {
 
 const goToPage = (page) => {
   if (page < 1 || page > props.rows?.last_page) return;
-  router.get(route('managers.index', { page }), {}, { preserveState: true });
+  router.get(route('clients.index', { page }), {}, { preserveState: true });
 };
 </script>

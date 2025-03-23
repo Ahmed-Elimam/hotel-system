@@ -1,17 +1,17 @@
 <template>
-  <Head title="Managers" />
+  <Head title="Receptionists" />
 
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="p-6 space-y-6">
-      <h1 class="text-2xl font-semibold">Manage Managers</h1>
+      <h1 class="text-2xl font-semibold">Manage Receptionists</h1>
 
       <Button class="bg-green-600 hover:bg-green-700">
-        <Link :href="route('managers.create')" method="get">Add Manager</Link>
+        <Link :href="route('receptionists.create')" method="get">Add Receptionist</Link>
       </Button>
 
       <Card>
         <CardContent class="overflow-x-auto">
-          <Table v-if="managers.length">
+          <Table v-if="receptionists.length">
             <TableHeader>
               <TableRow>
                 <TableHead>ID</TableHead>
@@ -23,19 +23,19 @@
               </TableRow>
             </TableHeader>
             <TableBody>
-              <TableRow v-for="manager in managers" :key="manager.id">
-                <TableCell>{{ manager.id }}</TableCell>
-                <TableCell>{{ manager.name }}</TableCell>
-                <TableCell>{{ manager.email }}</TableCell>
-                <TableCell>{{ manager.national_id }}</TableCell>
+              <TableRow v-for="receptionist in receptionists" :key="receptionist.id">
+                <TableCell>{{ receptionist.id }}</TableCell>
+                <TableCell>{{ receptionist.name }}</TableCell>
+                <TableCell>{{ receptionist.email }}</TableCell>
+                <TableCell>{{ receptionist.national_id }}</TableCell>
                 <TableCell>
-                  <Avatar v-if="manager.avatar_image">
-                    <AvatarImage :src="`/storage/${manager.avatar_image}`" alt="Avatar" />
+                  <Avatar v-if="receptionist.avatar_image">
+                    <AvatarImage :src="`/storage/${receptionist.avatar_image}`" alt="Avatar" />
                   </Avatar>
                 </TableCell>
                 <TableCell class="space-x-2">
                   <Button class="bg-yellow-500 text-black hover:bg-yellow-600 m-2 inline-flex items-center justify-center">
-                    <Link :href="route('managers.edit', manager.id)" method="get" class="w-full h-full flex items-center justify-center">
+                    <Link :href="route('receptionists.edit', receptionist.id)" method="get" class="w-full h-full flex items-center justify-center">
                       Update
                     </Link>
                   </Button>
@@ -56,7 +56,7 @@
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction>
-                          <Button @click.prevent="handleDelete(manager.id)">Continue</Button>
+                          <Button @click.prevent="handleDelete(receptionist.id)">Continue</Button>
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -65,10 +65,11 @@
               </TableRow>
             </TableBody>
           </Table>
-          <p v-else class="text-center text-gray-500">No managers found.</p>
+          <p v-else class="text-center text-gray-500">No receptionists found.</p>
         </CardContent>
       </Card>
 
+      <!-- Pagination Controls -->
       <div class="flex items-center justify-end py-4 space-x-2">
         <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url" @click="goToPage(props.rows?.current_page - 1)">
           Previous
@@ -100,20 +101,20 @@ const props = defineProps({
 });
 
 // Ensure we extract data correctly, regardless of its structure
-const managers = computed(() => {
+const receptionists = computed(() => {
   return props.rows?.data || props.rows || []; // Handles both cases: rows.data or rows directly
 });
 
 const breadcrumbs = [
   {
-    title: 'Managers',
-    href: '/managers',
+    title: 'Receptionists',
+    href: '/receptionists',
   },
 ];
 
 const handleDelete = async (id) => {
   try {
-    const response = await axios.delete(route('managers.destroy', id));
+    const response = await axios.delete(route('receptionists.destroy', id));
     if (response.status === 204) {
       toast.success("Record deleted successfully!", { timeout: 3000 });
       setTimeout(() => location.reload(), 3000);
@@ -126,6 +127,6 @@ const handleDelete = async (id) => {
 
 const goToPage = (page) => {
   if (page < 1 || page > props.rows?.last_page) return;
-  router.get(route('managers.index', { page }), {}, { preserveState: true });
+  router.get(route('receptionists.index', { page }), {}, { preserveState: true });
 };
 </script>

@@ -12,9 +12,14 @@ use App\Models\Country;
 
 class ClientController extends Controller
 {
+    // public function index()
+    // {
+    //     $clients = User::role('client')->paginate(5);
+    //     return Inertia::render('Clients/Index', ['rows' => $clients]);
+    // }
     public function index()
     {
-        $clients = User::role('client')->get();
+        $clients = User::role('client')->with('country')->paginate(5);
         return Inertia::render('Clients/Index', ['rows' => $clients]);
     }
     public function create()

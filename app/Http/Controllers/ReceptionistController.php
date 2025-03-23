@@ -16,7 +16,7 @@ class ReceptionistController extends Controller
      */
     public function index()
     {
-        $receptionists = User::role('receptionist')->get();
+        $receptionists = User::role('receptionist')->paginate(5);
         return Inertia::render('Receptionists/Index', ['rows' => $receptionists]);
     }
 
