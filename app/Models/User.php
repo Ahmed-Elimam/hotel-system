@@ -79,8 +79,8 @@ class User extends Authenticatable implements BannableInterface
     // {
     //     return $this->hasMany(Floor::class, 'creator_id');
     // }
-    // public function reservations()
-    // {
-    //     return $this->hasMany(Reservation::class, 'client_id');
-    // }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'client_id');
+    }
 }

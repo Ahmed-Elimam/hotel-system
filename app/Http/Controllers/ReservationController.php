@@ -63,9 +63,6 @@ class ReservationController extends Controller
             'reservations' => $reservations
         ]);
     }
-
-
-
     public function storeReservation(StoreReservationRequest $request, Room $room)
     {
         $reservation = Reservation::create([
@@ -80,15 +77,6 @@ class ReservationController extends Controller
         return redirect()->route('client.payment', $reservation->id);
     }
 
-    public function clientsReservations()
-    {
-        $reservations = Reservation::whereHas('client', function ($query) {
-                            $query->where('approved_by', Auth::id());
-                        })->get();
-
-        return Inertia::render('Receptionist/ClientsReservations', [
-            'reservations' => $reservations
-        ]);
-    }
+    
 
 }

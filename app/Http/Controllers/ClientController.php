@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientStoreRequest;
 use App\Http\Requests\ClientUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Country;
@@ -109,10 +110,20 @@ class ClientController extends Controller
         $client->assignRole('client');
         return redirect()->route('clients.pending');
     }
-    public function approved()
+    public function myApproved()
     {
         $clients = User::role('client')->where('approver_id',auth()->id())->get();
-        return Inertia::render('Clients/Approved', ['rows' => $clients]);
+        return Inertia::render('Clients/My-approved', ['rows' => $clients]);
+    }
+    public function clientsReservations()
+    {
+        if(Auth::user()->hasRole("receptionist")){
+            $clients = User::where('approver_id',auth()->user()->id)->pluck('id');
+            $reservations = Reservation::with('client')->whereIn('client_id',$clients)->get();
+        }else{
+            $reservations = Reservation::with('client')->get();
+        }
+        return Inertia::render('Reservations/ClientsReservations', ['reservations' => $reservations]);
     }
 
 }
