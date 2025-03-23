@@ -68,21 +68,21 @@ Route::middleware(['can:make-reservation'])->group(function () {
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-floors'])->group(function () {
-    Route::get('/floor', [FloorController::class,'index'])->name('floors.index') ;
-    Route::get('/floor/create', [FloorController::class,'create'])->name('floors.create') ;
-    Route::post('/floor', [FloorController::class,'store'])->name('floors.store') ;
-    Route::get('/floor/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
-    Route::put('/floor/{id}', [FloorController::class,'update'])->name('floors.update') ;
-    Route::delete('/floor/{id}', [FloorController::class,'destory'])->name('floors.destory') ;
+    Route::get('/floors', [FloorController::class,'index'])->name('floors.index') ;
+    Route::get('/floors/create', [FloorController::class,'create'])->name('floors.create') ;
+    Route::post('/floors', [FloorController::class,'store'])->name('floors.store') ;
+    Route::get('/floors/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
+    Route::put('/floors/{id}', [FloorController::class,'update'])->name('floors.update') ;
+    Route::delete('/floors/{id}', [FloorController::class,'destory'])->name('floors.destory') ;
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-rooms'])->group(function () {
-    Route::get('/room', [RoomController::class,'index'])->name('rooms.index') ;
-    Route::get('/room/create', [RoomController::class,'create'])->name('rooms.create') ;
-    Route::post('/room', [RoomController::class,'store'])->name('rooms.store') ;
-    Route::get('/room/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
-    Route::put('/room/{id}', [RoomController::class,'update'])->name('rooms.update') ;
-    Route::delete('/room/{id}', [RoomController::class,'destory'])->name('rooms.destory') ;
+    Route::get('/rooms', [RoomController::class,'index'])->name('rooms.index') ;
+    Route::get('/rooms/create', [RoomController::class,'create'])->name('rooms.create') ;
+    Route::post('/rooms', [RoomController::class,'store'])->name('rooms.store') ;
+    Route::get('/rooms/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
+    Route::put('/rooms/{id}', [RoomController::class,'update'])->name('rooms.update') ;
+    Route::delete('/rooms/{id}', [RoomController::class,'destory'])->name('rooms.destory') ;
 });
 /************************************************************************************************************************* */
 Route::get('/notifications', function () {
