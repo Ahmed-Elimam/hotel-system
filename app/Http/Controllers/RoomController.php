@@ -7,19 +7,27 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
-
+use App\Models\User;
 
 class RoomController extends Controller
 {
-    public function index(){
+   
 
-        $rooms = Room::with('creator')->get();
-        return Inertia::render('Rooms/Index', ['rows' => $rooms]);
+public function index()
+{
+    $rows = Room::with('floor.user')->paginate(5);
+    
+    return Inertia::render('Rooms/Index', [
+        'rows' => $rows,
+        'user' => auth()->user()->load('roles'),
+        
+    ]);
+}
 
-    }
 
     public function create(){
-       return Inertia::render('Rooms/Create');
+       return Inertia::render('Rooms/Create',
+        ['user' => auth()->user()->load('roles'),]);
     }
 
     public function store(StoreRoomRequest $request)
@@ -28,7 +36,7 @@ class RoomController extends Controller
        $capacity= $request->capacity;
        $price= $request->price ;
        $is_reserved =$request->is_reserved ;
-       $room_creator_id = $request->room_creator_id ;
+       $room_creator_id = auth()->id();
        $floor_id=$request->floor_id ;
 
 
