@@ -16,7 +16,7 @@ class ReservationController extends Controller
         $clients = User::with(['reservations' => function($query) {
             $query->where('is_approved', false);
         }])->get();
-        return Inertia::render('Receptionist/ManageClients', [ 'clients'=>$clients  ]);
+        return Inertia::render('Receptionist/ManageClients', [ 'rows'=>$clients  ]);
     }
     public function myApprovedClients(){
         $clients =User::with(['reservations' => function($query) {
