@@ -29,8 +29,7 @@ public function index()
        return Inertia::render('Rooms/Create',
         ['user' => auth()->user()->load('roles'),]);
     }
-
-    public function store(StoreRoomRequest $request)
+    public function store(RoomRequest $request)
     {
        $room_number =$request->room_number ;
        $capacity= $request->capacity;
@@ -41,42 +40,48 @@ public function index()
 
 
        Room::create([
-        'room_number' =>$room_number ,
-        'capacity' => $capacity ,
-        'price' =>$price ,
-        'is_reserved'=>$is_reserved ,
+        'room_number' =>$room_number,
+        'capacity' => $capacity,
+        'price' =>$price,
         'floor_id' => $floor_id,
-        'room_creator_id' => $room_creator_id
+        'room_creator_id' => auth()->id(),
        ]);
-       return redirect()->route('rooms.index')->with('success', 'Room created successfully.');
+       return redirect()->route('rooms.index')->with('success', 'Room created successfully');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
+        $room = Room::findOrFail($id);    
+        return Inertia::render('Rooms/Edit', ['row' => $room]);
+    }
+    public function update(RoomRequest $request, $id)
+    {
         $room = Room::findOrFail($id);
         if ($room->room_creator_id !== auth()->id() && auth()->user()->cannot('manage-all-rooms')) {
             abort(403);
         }
-        return Inertia::render('Rooms/Edit', ['row' => $room]);
-     }
+        $capacity = $request->capacity;
+        $price = $request->price ;
+        $floor_id=$request->floor_id;
+        $room->update([
+            'capacity' => $capacity,
+            'price' =>$price,
+            'floor_id' => $floor_id,
+        ]);
+        return redirect()->route('rooms.index')->with('success','Room updated successfully');
+    }
 
-
-
-         public function update(UpdateRoomRequest $request, $id)
-         {
-            $room = Room::findOrFail($id);
-             $room->update($request->only('capacity', 'price', 'is_reserved'));
-
-             return redirect()->route('rooms.index')->with('success', 'Room updated successfully.');
-         }
-
-         public function destroy($id){
-            $room = Room::findOrFail($id);
-            if($room->room_creator_id !== auth()->id() && auth()->user()->cannot('manage-rooms')) {
-
-                abort(403);
-
-            }
+    public function destroy($id)
+    {
+        $room = Room::findOrFail($id);
+        if($room->room_creator_id !== auth()->id() && auth()->user()->cannot('manage-all-rooms')) {
+            abort(403);
+        }
+        if(!$room->is_reserved) { // is_reserved default value is false
             $room->delete();
-           return response( null, 204);
-         }
+            return response()->json(['success' => 'Room deleted successfully.'], 204);
+        }else{
+            return response()->json(['error' => "You can't delete a reserved room."], 409);
+        }
+    }
     }

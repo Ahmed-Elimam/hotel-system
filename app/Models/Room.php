@@ -24,15 +24,12 @@ class Room extends Model
     {
         return $this->belongsTo(Floor::class, 'floor_id');
     }
-
     public function getFormattedDateAttribute()
     {
         return Carbon::parse($this->created_at)->format('Y-m-d');
     }
-
-
     public function creator()
     {
-        return $this->belongsTo(Floor::class, 'room_creator_id');
+        return $this->belongsTo(User::class, 'room_creator_id');
     }
 }

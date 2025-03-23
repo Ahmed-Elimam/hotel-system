@@ -30,7 +30,7 @@ class ClientStoreRequest extends FormRequest
             'avatar_image' => ['mimes:jpg,jpeg', 'max:2048'],
             'phone' => ['required', 'string', 'max:255'],
             'gender' => ['required' ,'in:male,female'],
-            'country' => ['required', 'exists:countries,id'],
+            'country_id' => ['required', 'exists:countries,id'],
         ];
     }
 }
