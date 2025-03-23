@@ -45,7 +45,7 @@ class ManagerController extends Controller
             'password' => $password, 
             'national_id' => $national_id, 
             'avatar_image' => $avatar_image,
-            // 'creator_id' => auth()->id(),
+            'creator_id' => auth()->id(),
         ]);
         $user->assignRole('manager');
         return to_route('managers.index');
