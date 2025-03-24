@@ -39,11 +39,7 @@ const mainNavItems: NavItem[] = [
         href: '/rooms',
         icon: LayoutGrid,
     },
-    {
-        title: 'Manage Floors',
-        href: '/floors',
-        icon: LayoutGrid,
-    },
+
 ];
 
 const footerNavItems: NavItem[] = [

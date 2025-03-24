@@ -71,12 +71,12 @@ Route::middleware(['can:make-reservation'])->group(function () {
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-floors'])->group(function () {
-    Route::get('/floorss', [FloorController::class,'index'])->name('floors.index') ;
-    Route::get('/floorss/create', [FloorController::class,'create'])->name('floors.create') ;
-    Route::post('/floorss', [FloorController::class,'store'])->name('floors.store') ;
-    Route::get('/floorss/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
-    Route::put('/floorss/{id}', [FloorController::class,'update'])->name('floors.update') ;
-    Route::delete('/floorss/{id}', [FloorController::class,'destroy'])->name('floors.destroy') ;
+    Route::get('/floors', [FloorController::class,'index'])->name('floors.index') ;
+    Route::get('/floors/create', [FloorController::class,'create'])->name('floors.create') ;
+    Route::post('/floors', [FloorController::class,'store'])->name('floors.store') ;
+    Route::get('/floors/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
+    Route::put('/floors/{id}', [FloorController::class,'update'])->name('floors.update') ;
+    Route::delete('/floors/{id}', [FloorController::class,'destroy'])->name('floors.destroy') ;
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-rooms'])->group(function () {
