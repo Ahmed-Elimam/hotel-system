@@ -27,7 +27,6 @@ Route::middleware(['can:manage-managers'])->group(function () {
     Route::get('/managers', [ManagerController::class, 'index'])->name('managers.index');
     Route::get('/managers/create', [ManagerController::class, 'create'])->name('managers.create');
     Route::post('/managers', [ManagerController::class, 'store'])->name('managers.store');
-
     Route::get('/managers/{id}/edit',[ManagerController::class, 'edit'])->name('managers.edit');
     Route::put('/managers/{id}',[ManagerController::class, 'update'])->name('managers.update');
     Route::delete('/managers/{id}',[ManagerController::class, 'destroy'])->name('managers.destroy');

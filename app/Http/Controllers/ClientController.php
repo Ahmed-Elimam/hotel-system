@@ -11,7 +11,7 @@ use App\Models\User;
 use App\Models\Country;
 use App\Models\Client;
 use App\Models\Reservation;
-
+use App\Notifications\ClientApprovedNotification;
 
 class ClientController extends Controller
 {
@@ -110,6 +110,7 @@ class ClientController extends Controller
         $client->save();
         $client->removeRole('pending-client');
         $client->assignRole('client');
+        $client->notify(new ClientApprovedNotification($client));
         return redirect()->route('clients.pending');
     }
     public function myApproved()
