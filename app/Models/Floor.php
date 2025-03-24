@@ -17,6 +17,10 @@ class Floor extends Model
     {
         return $this->belongsTo(User::class, 'creator_id');
     }
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'floor_id'); // Ensure 'floor_id' is the foreign key
+    }
 
     protected static function boot()
     {
@@ -29,7 +33,7 @@ class Floor extends Model
     private static function generateFloorNumber()
     {
         $lastFloor = self::orderBy('id', 'desc')->first();
-        return $lastFloor ? $lastFloor->number + 1 : 1000;
+        return $lastFloor ? $lastFloor->floor_number + 1000 : 1000;
     }
     public function getFormattedDateAttribute()
     {
