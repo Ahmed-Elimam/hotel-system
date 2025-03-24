@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Client;
 use App\Models\Reservation;
 use App\Notifications\ClientApprovedNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ClientController extends Controller
 {
@@ -110,7 +111,7 @@ class ClientController extends Controller
         $client->save();
         $client->removeRole('pending-client');
         $client->assignRole('client');
-        $client->notify(new ClientApprovedNotification($client));
+        Notification::send($client, new ClientApprovedNotification($client));
         return redirect()->route('clients.pending');
     }
     public function myApproved()
