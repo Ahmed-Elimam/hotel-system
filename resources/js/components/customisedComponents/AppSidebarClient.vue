@@ -16,17 +16,12 @@ const mainNavItems: NavItem[] = [
     },
 
     {
-        title: 'My Reservation',
-        href: '/rooms',
+        title: 'Reservation Form',
+        href: '/reservations/available-rooms/',
         icon: LayoutGrid,
     },
     {
         title: 'Available Rooms',
-        href: '/rooms',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'RservationForm',
         href: '/rooms',
         icon: LayoutGrid,
     },

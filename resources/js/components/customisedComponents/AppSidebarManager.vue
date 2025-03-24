@@ -16,13 +16,13 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Manage Receptionists',
-        href: '/Receptionists',
+        href: '/receptionists',
         icon: LayoutGrid,
     },
 
     {
         title: 'Manage Clients',
-        href: '/Clients',
+        href: '/clients',
         icon: LayoutGrid,
     },
     {
@@ -36,7 +36,13 @@ const mainNavItems: NavItem[] = [
         href: '/rooms',
         icon: LayoutGrid,
     },
-   
+    {
+        title: 'Reservation Form',
+        href: '/reservations/available-rooms/',
+        icon: LayoutGrid,
+    },
+
+
 ];
 
 const footerNavItems: NavItem[] = [

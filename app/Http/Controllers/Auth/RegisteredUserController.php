@@ -22,7 +22,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        $countries = Country::all()->sortBy('name'); // Sort them alphabetically
+        $countries = Country::orderBy('name')->get()->toArray(); // Sort them alphabetically
         return Inertia::render('auth/Register', ['countries' => $countries]);
     }
 
@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
         $email = $request->email;
         $password = $request->password;
         $national_id = $request->national_id;
-        $country_id = $request->country;
+        $country_id = $request->country_id;
         $phone = $request->phone;
         $gender = $request->gender;
         if ($request->hasFile('avatar_image')) {
@@ -56,10 +56,10 @@ class RegisteredUserController extends Controller
             'gender'=> $gender,
         ]);
         $user->assignRole('pending-client');
+
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return to_route('dashboard');
+        return to_route('home')->with('success', 
+        "Thank you for registering! We’re excited to welcome you as a guest at our hotel. Your registration is under review, and we will notify you via email once it is approved.");
     }
 }
