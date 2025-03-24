@@ -110,7 +110,7 @@ const breadcrumbs = [
                 <FormField name="floor_id">
                   <FormItem>
                     <FormLabel>Floor Name</FormLabel>
-                    <Select v-model="form.name">
+                    <Select v-model="form.floor_id">
                       <FormControl>
                         <SelectTrigger class="w-full">
                           <SelectValue placeholder="Choose floor name" />

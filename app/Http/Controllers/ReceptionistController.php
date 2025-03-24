@@ -48,6 +48,8 @@ class ReceptionistController extends Controller
             'national_id' => $national_id,
             'avatar_image' => $avatar_image,
             'creator_id' => auth()->id(),
+            'phone' => $request->phone,
+            'gender' => $request->gender,
         ]);
         $user->assignRole('receptionist');
         return to_route('receptionists.index');
