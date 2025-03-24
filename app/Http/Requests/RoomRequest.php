@@ -35,6 +35,7 @@ class RoomRequest extends FormRequest
         'price.required' => 'The price is required.',
         'price.integer' => 'The price must be an integer.',
         'price.min' => 'The price must be at least 100 dollar.',
+        'floor_id.required' => 'The floor must be chosen.',
     ];
 }
 
