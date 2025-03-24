@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('room_number')->unique();
-            $table->unsignedInteger('capacity');
-            $table->unsignedBigInteger('price');
+            $table->unsignedInteger('capacity')->default(1);
+            $table->unsignedBigInteger('price')->default(0);
             $table->boolean('is_reserved')->default(false);
 
             $table->unsignedBigInteger('floor_id');
             $table->foreign('floor_id')->references('id')->on('floors');//add foriegn key constraints
 
             $table->unsignedBigInteger('room_creator_id');
-            $table->foreign('room_creator_id')->references('creator_id')->on('floors');
+            $table->foreign('room_creator_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

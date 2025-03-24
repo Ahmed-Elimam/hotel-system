@@ -37,7 +37,7 @@ const form = useForm({
   address: props.row.address || "",
   national_id: props.row.national_id || "",
   gender: props.row.gender || "",
-  country: props.row.country || "",
+  country_id: props.row.country_id || "", // Changed from `country` to `country_id`
   avatar_image: null,
 });
 
@@ -172,10 +172,10 @@ const confirmReset = () => {
                       </FormItem>
                     </FormField>
                     
-                    <FormField name="country">
+                    <FormField name="country_id"> <!-- Changed from `country` to `country_id` -->
                       <FormItem>
                         <FormLabel>Country</FormLabel>
-                        <Select v-model="form.country">
+                        <Select v-model="form.country_id">
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select Country" />
@@ -188,7 +188,7 @@ const confirmReset = () => {
                           </SelectContent>
                         </Select>
                         <FormMessage />
-                        <p v-if="form.errors.country" class="text-red-500 text-sm">{{ form.errors.country }}</p>
+                        <p v-if="form.errors.country_id" class="text-red-500 text-sm">{{ form.errors.country_id }}</p>
                       </FormItem>
                     </FormField>
                   </div>

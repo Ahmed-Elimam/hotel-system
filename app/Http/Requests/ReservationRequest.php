@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Room;
 
-class StoreReservationRequest extends FormRequest
+class ReservationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,13 +22,16 @@ class StoreReservationRequest extends FormRequest
      */
     public function rules(): array
     {
+        $roomCapacity = Room::where("id", $this->route('id'))->value('capacity') ?? 0;
         return [
-            'accompany_number' => 'required|integer|min:4',
-            'check_in' => 'required|date',
+            'accompany_number' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:' . $roomCapacity,
+            ],
+            'check_in' => 'required|date|after_or_equal:today',
             'check_out' => 'required|date|after:check_in',
-            'paid_price' => 'required|integer|min:1',
-            'room_id' => 'required|exists:rooms,id',
-            'client_id' => 'required|exists:users,id',
         ];
     }
 }

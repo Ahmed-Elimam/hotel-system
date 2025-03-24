@@ -18,7 +18,6 @@ const props = defineProps({
   rows: Array, // This will contain the list of countries
 });
 
-
 const form = useForm({
   name: "",
   email: "",
@@ -27,7 +26,7 @@ const form = useForm({
   national_id: "",
   phone: "",
   gender: "",
-  country: "",
+  country_id: "", // Changed from `country` to `country_id` to match backend
   avatar_image: null,
 });
 
@@ -76,6 +75,7 @@ const breadcrumbs = [
   },
 ];
 </script>
+
 <template>
   <Head title="Clients" />
 
@@ -141,10 +141,10 @@ const breadcrumbs = [
                   </div>
                   
                   <div class="space-y-4">
-                    <FormField name="country">
+                    <FormField name="country_id"> <!-- Changed from `country` to `country_id` -->
                       <FormItem>
                         <FormLabel>Country</FormLabel>
-                        <Select v-model="form.country">
+                        <Select v-model="form.country_id">
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select Country" />
@@ -158,7 +158,7 @@ const breadcrumbs = [
                           </SelectContent>
                         </Select>
                         <FormMessage />
-                        <p v-if="form.errors.country" class="text-red-500 text-sm">{{ form.errors.country }}</p>
+                        <p v-if="form.errors.country_id" class="text-red-500 text-sm">{{ form.errors.country_id }}</p>
                       </FormItem>
                     </FormField>
                     

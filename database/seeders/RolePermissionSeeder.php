@@ -29,13 +29,12 @@ class RolePermissionSeeder extends Seeder
             'approve-clients',
             'view-my-approved-clients',
             'manage-floors',
+            'manage-all-floors',
             'manage-rooms',
+            'manage-all-rooms',
             'manage-reservations',
             'view-my-reservations',
             'make-reservation',
-            'manage-client-reservation',
-            'manage-all-floors',
-            'manage-all-rooms'
         ];
 
         foreach ($permissions as $permission) {
@@ -48,7 +47,7 @@ class RolePermissionSeeder extends Seeder
         // Assign specific permissions to Manager
         $managerRole->givePermissionTo([
             'manage-receptionists', 'manage-clients','approve-clients',
-            'manage-floors', 'manage-rooms'
+            'manage-floors', 'manage-rooms' ,'manage-reservations',
         ]);
 
         // Assign specific permissions to Receptionist
@@ -58,7 +57,7 @@ class RolePermissionSeeder extends Seeder
 
         // Assign specific permissions to Client
         $clientRole->givePermissionTo([
-            'view-my-reservations', 'make-reservation','manage-client-reservation'
+            'view-my-reservations', 'make-reservation',
         ]);
     }
 }

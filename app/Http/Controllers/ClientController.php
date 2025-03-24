@@ -5,21 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientStoreRequest;
 use App\Http\Requests\ClientUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use App\Models\User;
 use App\Models\Country;
+use App\Models\Client;
+use App\Models\Reservation;
 
 
 class ClientController extends Controller
 {
-    // public function index()
-    // {
-    //     $clients = User::role('client')->paginate(5);
-    //     return Inertia::render('Clients/Index', ['rows' => $clients]);
-    // }
     public function index()
     {
-        $clients = User::role('client')->with('country')->paginate(5);
+        $clients = User::role(['client', 'pending-client'])->with('country')->paginate(5);
         return Inertia::render('Clients/Index', ['rows' => $clients]);
     }
     public function create()
@@ -33,7 +31,7 @@ class ClientController extends Controller
         $email = $request->email;
         $password = $request->password;
         $national_id = $request->national_id;
-        $country = $request->country;
+        $country_id = $request->country_id;
         $phone = $request->phone;
         $gender = $request->gender;
         if ($request->hasFile('avatar_image')) {
@@ -48,7 +46,7 @@ class ClientController extends Controller
             'national_id' => $national_id,
             'avatar_image' => $avatar_image,
             'creator_id' => auth()->id(),
-            'country' => $country,
+            'country_id' => $country_id,
             'phone' => $phone,
             'gender'=> $gender,
             'approver_id' => auth()->id(),
@@ -58,7 +56,7 @@ class ClientController extends Controller
     }
     public function edit($id)
     {
-        $client = User::find($id);
+        $client = User::findOrFail($id);
         $countries = Country::all();
         return Inertia::render('Clients/Edit', ['row' => $client, 'rows' => $countries]);
     }
@@ -68,7 +66,7 @@ class ClientController extends Controller
         $name = $request->name;
         $email = $request->email;
         $national_id = $request->national_id;
-        $country = $request->country;
+        $country_id = $request->country_id;
         $phone = $request->phone;
         $gender = $request->gender;
         if ($request->hasFile('avatar_image')) {
@@ -80,22 +78,28 @@ class ClientController extends Controller
             $avatarPath = $request->file('avatar_image')->store('avatars', 'public');
             $user->update(['avatar_image' => $avatarPath]);
         }
-        $user->update(['name'=> $name,'email'=> $email,'national_id'=> $national_id,'country'=> $country,'phone'=> $phone,'gender'=> $gender]);
+        $user->update(['name'=> $name,
+                    'email'=> $email,
+                    'national_id'=> $national_id,
+                    'country_id'=> $country_id,
+                    'phone'=> $phone,
+                    'gender'=> $gender]);
         return redirect()->route('clients.index');
     }
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        Reservation::where('client_id', $user->id)->delete(); // Delete all reservations for this client
         if ($user->avatar_image && $user->avatar_image !== 'avatar.jpg') {
             \Storage::disk('public')->delete($user->avatar_image);
         }
-        $user->delete();
+        $user->delete(); //Then delete the client
         return response(null, 204);
     }
     public function pending()
     {
         $clients = User::role('pending-client')->get();
-        return Inertia::render('Clients/Pending', ['rows' => $clients]);
+        return Inertia::render('Clients/Pending-For-Approve', ['rows' => $clients]);
     }
     public function approve($id)
     {
@@ -106,10 +110,20 @@ class ClientController extends Controller
         $client->assignRole('client');
         return redirect()->route('clients.pending');
     }
-    public function approved()
+    public function myApproved()
     {
         $clients = User::role('client')->where('approver_id',auth()->id())->get();
-        return Inertia::render('Clients/Approved', ['rows' => $clients]);
+        return Inertia::render('Clients/My-approved-clients', ['rows' => $clients]);
+    }
+    public function clientsReservations()
+    {
+        if(Auth::user()->hasRole("receptionist")){
+            $clients = User::where('approver_id',auth()->user()->id)->pluck('id');
+            $reservations = Reservation::with('client')->whereIn('client_id',$clients)->get();
+        }else{
+            $reservations = Reservation::with('client')->get();
+        }
+        return Inertia::render('Clients/ClientsReservations', ['rows' => $reservations]);
     }
 
 }

@@ -28,7 +28,7 @@
                 <TableCell>{{ client.id }}</TableCell>
                 <TableCell>{{ client.name }}</TableCell>
                 <TableCell>{{ client.email }}</TableCell>
-                <TableCell>{{ client.country ? client.country.name : 'N/A' }}</TableCell>
+                <TableCell>{{ client.country?.name || 'N/A' }}</TableCell>
                 <TableCell>{{ client.gender }}</TableCell>
                 <TableCell>
                   <Avatar v-if="client.avatar_image">
