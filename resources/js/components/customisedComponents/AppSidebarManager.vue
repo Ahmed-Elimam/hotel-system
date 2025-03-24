@@ -19,7 +19,7 @@ const mainNavItems: NavItem[] = [
         href: '/Receptionists',
         icon: LayoutGrid,
     },
-   
+
     {
         title: 'Manage Clients',
         href: '/Clients',
@@ -36,6 +36,7 @@ const mainNavItems: NavItem[] = [
         href: '/rooms',
         icon: LayoutGrid,
     },
+   
 ];
 
 const footerNavItems: NavItem[] = [

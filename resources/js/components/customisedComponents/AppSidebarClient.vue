@@ -14,6 +14,22 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+
+    {
+        title: 'My Reservation',
+        href: '/rooms',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Available Rooms',
+        href: '/rooms',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'RservationForm',
+        href: '/rooms',
+        icon: LayoutGrid,
+    },
     // {
     //     title: 'Manage managers',
     //     href: '/managers',
