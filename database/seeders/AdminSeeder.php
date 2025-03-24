@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -13,11 +12,18 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::factory()->create([
-                'name' => 'Admin',
-                'email' => 'admin@admin.com',
-                'password' => Hash::make('123456'),
-                ]);
-        $admin->assignRole(roles: 'admin');
+        $admin = User::firstOrNew([
+            'email' => 'admin@admin.com', 
+        ]);
+
+        if (!$admin->exists) {
+            $admin->name = 'Admin';
+            $admin->password = Hash::make('123456');
+            $admin->save(); 
+        }
+
+        if (!$admin->hasRole('admin')) {
+            $admin->assignRole('admin');
+        }
     }
 }

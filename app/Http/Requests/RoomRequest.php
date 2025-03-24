@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreRoomRequest extends FormRequest
+class RoomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +23,19 @@ class StoreRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'room_number' => 'required|integer|unique:rooms|min:1000|max:9999',
-            'capacity' => 'required|integer|min:1|max:4',
-            'price' => 'required|integer|min:1',
-            'is_reserved' => 'required|boolean' ,
+            'room_number' => ['required', 'integer', 'min:1000', 'max:9999', Rule::unique('rooms')->ignore($this->id)],
+            'capacity' => 'required|integer|min:1|max:6',
+            'price' => 'required|integer|min:100',
             'floor_id' => 'required|exists:floors,id',
         ];
     }
+    public function messages()
+{
+    return [
+        'price.required' => 'The price is required.',
+        'price.integer' => 'The price must be an integer.',
+        'price.min' => 'The price must be at least 100 dollar.',
+    ];
+}
+
 }

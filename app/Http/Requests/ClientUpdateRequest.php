@@ -24,16 +24,16 @@ class ClientUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',
-                        Rule::unique('users')->ignore($this->user_id)],
-            'password' => ['required', 'string', 'min:6'],
-            'password_confirmation' => ['required', 'string', 'min:6', 'same:password'],
-            'national_id' => ['required','string', 'size:14', 'unique:users', 
-                        Rule::unique('users')->ignore($this->client)],
+            'email' => ['required', 'string', 'email', 'max:255',
+                        Rule::unique('users')->ignore($this->id)],
+            'password' => ['nullable', 'string', 'min:6'],
+            'password_confirmation' => ['nullable', 'string', 'min:6', 'same:password'],
+            'national_id' => ['required', 'size:14', 
+                        Rule::unique('users')->ignore($this->id)],
             'avatar_image' => ['nullable','mimes:jpg,jpeg', 'max:2048'],
             'phone' => ['required', 'string', 'max:255'],
             'gender' => ['required' ,'in:male,female'],
-            'country' => ['required', 'exists:countries,id'],
+            'country_id' => ['required', 'exists:countries,id'],
         ];
     }
 }

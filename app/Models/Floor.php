@@ -33,7 +33,7 @@ class Floor extends Model
     private static function generateFloorNumber()
     {
         $lastFloor = self::orderBy('id', 'desc')->first();
-        return $lastFloor ? $lastFloor->floor_number + 1000 : 1000;
+        return $lastFloor ? $lastFloor->floor_number + 1 : 1000;
     }
     public function getFormattedDateAttribute()
     {

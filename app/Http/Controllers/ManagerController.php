@@ -16,9 +16,11 @@ class ManagerController extends Controller
      */
     public function index()
     {
-        $managers = User::role('manager')->get();
-        return Inertia::render('Managers/Index', ['rows' => $managers]);
+        $managers = User::role('manager')->paginate(5);
+        return Inertia::render('Managers/Index', 
+        ['rows' => $managers, 'user' => auth()->user()->load('roles')]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -26,7 +28,8 @@ class ManagerController extends Controller
     
     public function create()
     {
-        return Inertia::render('Managers/Create');
+        return Inertia::render('Managers/Create',
+        ['user' => auth()->user()->load('roles'),]);
     }
     public function store(UserStoreRequest $request)
     {
@@ -45,7 +48,7 @@ class ManagerController extends Controller
             'password' => $password, 
             'national_id' => $national_id, 
             'avatar_image' => $avatar_image,
-            // 'creator_id' => auth()->id(),
+            'creator_id' => auth()->id(),
         ]);
         $user->assignRole('manager');
         return to_route('managers.index');
@@ -53,7 +56,9 @@ class ManagerController extends Controller
     public function edit($id)
     {
         $manager = User::findOrFail($id); 
-        return Inertia::render('Managers/Edit', ['row' => $manager]);
+        return Inertia::render('Managers/Edit',
+         ['row' => $manager,
+    'user' => auth()->user()->load('roles'),]);
     }
 
     /**

@@ -36,6 +36,8 @@ class User extends Authenticatable implements BannableInterface
         'gender',
         'country_id',
         'creator_id',
+        'approver_id',
+        'last_login_date',
     ];
 
     /**
@@ -65,6 +67,10 @@ class User extends Authenticatable implements BannableInterface
     {
         return $this->belongsTo(Country::class, 'country_id');
     }
+    // public function country()
+    // {
+    //     return $this->belongsTo(Country::class);
+    // }
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');
@@ -77,8 +83,8 @@ class User extends Authenticatable implements BannableInterface
     // {
     //     return $this->hasMany(Floor::class, 'creator_id');
     // }
-    // public function reservations()
-    // {
-    //     return $this->hasMany(Reservation::class, 'client_id');
-    // }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'client_id');
+    }
 }

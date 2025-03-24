@@ -27,10 +27,10 @@ class ClientStoreRequest extends FormRequest
             'password' => ['required', 'string', 'min:6'],
             'password_confirmation' => ['required', 'string', 'min:6', 'same:password'],
             'national_id' => ['required','string', 'size:14', 'unique:users'],
-            'avatar_image' => ['mimes:jpg,jpeg', 'max:2048'],
+            'avatar_image' => ['nullable','mimes:jpg,jpeg', 'max:2048'],
             'phone' => ['required', 'string', 'max:255'],
             'gender' => ['required' ,'in:male,female'],
-            'country' => ['required', 'exists:countries,id'],
+            'country_id' => ['required', 'exists:countries,id'],
         ];
     }
 }
