@@ -32,7 +32,7 @@ public function index()
 
     public function create(){
        return Inertia::render('Rooms/Create',
-        ['user' => auth()->user()->load('roles'), 'floors'=> Floor::get()] );
+        ['user' => auth()->user()->load('roles'), 'floors'=> Floor::all()] );
     } 
     public function store(RoomRequest $request)
     {

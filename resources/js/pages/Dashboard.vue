@@ -1,9 +1,9 @@
 <script setup lang="ts">
-// import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
-// import { type BreadcrumbItem } from '@/types';
+
 import { Head, usePage } from '@inertiajs/vue3';
 import PlaceholderPattern from '../components/PlaceholderPattern.vue';
-import { defineAsyncComponent, defineProps, computed } from 'vue';
+import { defineAsyncComponent } from 'vue';
+
 
 const userRoles = usePage().props.user.roles.map(role => role.name);
 const AppLayout = defineAsyncComponent(() =>

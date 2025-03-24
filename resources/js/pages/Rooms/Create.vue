@@ -11,7 +11,6 @@ import { Link } from "@inertiajs/vue3";
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
 
 const form = useForm({
   room_number: "",
@@ -121,8 +120,9 @@ const breadcrumbs = [
                           {{ floor.name }}
                         </SelectItem>
                       </SelectContent>
+                      <p v-if="form.errors.floor_id" class="text-red-500 text-sm">{{ form.errors.floor_id }}</p>
+
                     </Select>
-                    <p v-if="form.errors.name" class="text-red-500 text-sm">{{ form.errors.name }}</p>
                   </FormItem>
                 </FormField>
 

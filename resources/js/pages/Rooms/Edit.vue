@@ -107,19 +107,11 @@ const breadcrumbs = [
                 <FormField name="floor_id">
                   <FormItem>
                     <FormLabel>Floor Name</FormLabel>
-                    <Select v-model="form.floor_id">
-                      <FormControl>
-                        <SelectTrigger class="w-full">
-                          <SelectValue placeholder="Choose floor name" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem v-for="floor in floors" :key="floor.id" :value="floor.id">
-                          {{ floor.name }}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <p v-if="form.errors.floor_id" class="text-red-500 text-sm">{{ form.errors.floor_id }}</p>
+                    <FormControl>
+                      <Input v-model="form.floor_id" type="text" placeholder="Enter room capacity" readonly value="form.floor.name"/>
+                    </FormControl>
+                    <FormMessage />
+
                   </FormItem>
                 </FormField>
 
