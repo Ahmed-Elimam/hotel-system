@@ -30,7 +30,7 @@
                 <TableCell>{{ receptionist.national_id }}</TableCell>
                 <TableCell>
                   <Avatar v-if="receptionist.avatar_image">
-                    <AvatarImage :src="`/storage/${receptionist.avatar_image}`" alt="Avatar" />
+                    <AvatarImage :src="'/storage/${receptionist.avatar_image}'" alt="Avatar" />
                   </Avatar>
                 </TableCell>
                 <TableCell class="space-x-2">
