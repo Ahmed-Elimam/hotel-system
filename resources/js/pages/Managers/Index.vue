@@ -178,7 +178,7 @@ const goToPage = (page) => {
   if (page < 1 || page > props.rows?.last_page) return;
   router.get(route('managers.index', { page }), {}, { preserveState: true });
 };
-// Ensure reactivity
+
 const table = useVueTable({
     data: computed(() => props.rows.data),
     columns: computed(() => props.columns),
@@ -186,5 +186,4 @@ const table = useVueTable({
     getPaginationRowModel: getPaginationRowModel(),
 });
 </script>
-
 

@@ -35,7 +35,6 @@ class RolePermissionSeeder extends Seeder
             'manage-reservations',
             'view-my-reservations',
             'make-reservation',
-            'manage-client-reservation',
         ];
 
         foreach ($permissions as $permission) {
@@ -58,7 +57,7 @@ class RolePermissionSeeder extends Seeder
 
         // Assign specific permissions to Client
         $clientRole->givePermissionTo([
-            'view-my-reservations', 'make-reservation','manage-client-reservation'
+            'view-my-reservations', 'make-reservation',
         ]);
     }
 }

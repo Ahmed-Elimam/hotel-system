@@ -67,6 +67,10 @@ class User extends Authenticatable implements BannableInterface
     {
         return $this->belongsTo(Country::class, 'country_id');
     }
+    // public function country()
+    // {
+    //     return $this->belongsTo(Country::class);
+    // }
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');

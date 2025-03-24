@@ -1,5 +1,5 @@
 <script setup>
-import {  defineAsyncComponent, defineProps } from 'vue';
+import { defineAsyncComponent, defineProps } from 'vue';
 import { useForm } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 import { Input } from "@/components/ui/input";
@@ -28,11 +28,11 @@ const onSubmit = () => {
       toast.success("Room added successfully!");
       console.log("s")
       form.reset();
-  
+
     },
     onError: (errors) => {
       toast.error("Please fix the errors in the form.");
-      console.log("f",errors)
+      console.log("f", errors)
     },
   });
 };
@@ -49,118 +49,119 @@ const AppLayout = defineAsyncComponent(() =>
   userRoles.includes("admin")
     ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
     : userRoles.includes("manager") ?
-    import("@/layouts/customisedLayout/AppLayoutManager.vue")
-    : userRoles.includes("receptionist") ?
-    import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
-    : import("@/layouts/customisedLayout/AppLayoutClient.vue")
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : userRoles.includes("receptionist") ?
+        import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+        : import("@/layouts/customisedLayout/AppLayoutClient.vue")
 );
 
 const props = defineProps({
-      floors: Array
-  });
+  floors: Array
+});
 
 import { Head } from '@inertiajs/vue3';
 
 const breadcrumbs = [
-    {
-        title: 'Add new room',
-        href: '/add',
-    },
+  {
+    title: 'Add new room',
+    href: '/add',
+  },
 ];
 </script>
 
 <template>
+
   <Head title="Rooms" />
 
-<AppLayout :breadcrumbs="breadcrumbs">
+  <AppLayout :breadcrumbs="breadcrumbs">
     <div class="max-w-7xl mx-auto space-y-6 p-6">
-    <Card>
-      <CardContent class="p-6">
-        <h1 class="text-2xl font-bold mb-6">Add new room</h1>
-        
+      <Card>
+        <CardContent class="p-6">
+          <h1 class="text-2xl font-bold mb-6">Add new room</h1>
+
           <Form @submit="onSubmit">
-           
-              <div class="  mt-4">
-                <div class="space-y-4">
-                  <FormField name="room_number">
-                    <FormItem>
-                      <FormLabel>Room Number</FormLabel>
-                      <FormControl>
-                        <Input v-model="form.room_number" type="number" placeholder="Room Number consisted of 4 digits" />
-                      </FormControl>
-                      <FormMessage />
-                      <p v-if="form.errors.room_number" class="text-red-500 text-sm">{{ form.errors.room_number}}</p>
 
-                    </FormItem>
-                  </FormField>
-                  
-                  <FormField name="capacity">
-                    <FormItem>
-                      <FormLabel>Capacity</FormLabel>
-                      <FormControl>
-                        <Input v-model="form.capacity" type="number" placeholder="Enter room capacity" />
-                      </FormControl>
-                      <FormMessage />
-                      <p v-if="form.errors.capacity" class="text-red-500 text-sm">{{ form.errors.capacity }}</p>
+            <div class="  mt-4">
+              <div class="space-y-4">
+                <FormField name="room_number">
+                  <FormItem>
+                    <FormLabel>Room Number</FormLabel>
+                    <FormControl>
+                      <Input v-model="form.room_number" type="number" placeholder="Room Number consisted of 4 digits" />
+                    </FormControl>
+                    <FormMessage />
+                    <p v-if="form.errors.room_number" class="text-red-500 text-sm">{{ form.errors.room_number }}</p>
 
-                    </FormItem>
-                  </FormField>
+                  </FormItem>
+                </FormField>
 
-                  <FormField name="floor_id">
-  <FormItem>
-    <FormLabel>Floor Number</FormLabel>
-    <Select v-model="form.floor_id">
-      <FormControl>
-        <SelectTrigger class="w-full">
-          <SelectValue placeholder="Choose floor number" />
-        </SelectTrigger>
-      </FormControl>
-      <SelectContent>
-        <SelectItem v-for="floor in floors" :key="floor.id" :value="floor.id">
-          {{ floor.floor_number }}
-        </SelectItem>
-      </SelectContent>
-    </Select>
-    <p v-if="form.errors.floor_id" class="text-red-500 text-sm">{{ form.errors.floor_id }}</p>
-  </FormItem>
-</FormField>
-                  
-                  <FormField name="price">
-                    <FormItem>
-                      <FormLabel>Price</FormLabel>
+                <FormField name="capacity">
+                  <FormItem>
+                    <FormLabel>Capacity</FormLabel>
+                    <FormControl>
+                      <Input v-model="form.capacity" type="number" placeholder="Enter room capacity" />
+                    </FormControl>
+                    <FormMessage />
+                    <p v-if="form.errors.capacity" class="text-red-500 text-sm">{{ form.errors.capacity }}</p>
+
+                  </FormItem>
+                </FormField>
+
+                <FormField name="floor_id">
+                  <FormItem>
+                    <FormLabel>Floor Name</FormLabel>
+                    <Select v-model="form.name">
                       <FormControl>
-                        <Input v-model="form.price" placeholder="Enter room price per day" type="number"/>
+                        <SelectTrigger class="w-full">
+                          <SelectValue placeholder="Choose floor name" />
+                        </SelectTrigger>
                       </FormControl>
-                      <FormMessage />
-                      <p v-if="form.errors.price" class="text-red-500 text-sm">{{ form.errors.price }}</p>
-                    </FormItem>
-                  </FormField>
-                  
-                  <FormField name="is_reserved">
-                    <FormItem>
-                      <FormLabel>Room Status</FormLabel>
-                      <Select v-model="form.is_reserved">
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Room is reserved" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="0">Available</SelectItem>
-                          <SelectItem value="1">Reserved</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  </FormField>
-                </div>
+                      <SelectContent>
+                        <SelectItem v-for="floor in floors" :key="floor.id" :value="floor.id">
+                          {{ floor.name }}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <p v-if="form.errors.name" class="text-red-500 text-sm">{{ form.errors.name }}</p>
+                  </FormItem>
+                </FormField>
+
+                <FormField name="price">
+                  <FormItem>
+                    <FormLabel>Price</FormLabel>
+                    <FormControl>
+                      <Input v-model="form.price" placeholder="Enter room price per day" type="number" />
+                    </FormControl>
+                    <FormMessage />
+                    <p v-if="form.errors.price" class="text-red-500 text-sm">{{ form.errors.price }}</p>
+                  </FormItem>
+                </FormField>
+
+                <FormField name="is_reserved">
+                  <FormItem>
+                    <FormLabel>Room Status</FormLabel>
+                    <Select v-model="form.is_reserved">
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Room is reserved" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="0">Available</SelectItem>
+                        <SelectItem value="1">Reserved</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                </FormField>
               </div>
-              
-              
-            
+            </div>
+
+
+
             <div class="flex justify-center space-x-4 mt-8">
               <Button type="submit" class="bg-blue-600 hover:bg-blue-700">Add Room</Button>
-              
+
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button type="button" variant="destructive">Reset</Button>
@@ -180,15 +181,14 @@ const breadcrumbs = [
                 </AlertDialogContent>
               </AlertDialog>
               <Button variant="outline" asChild>
-          <Link href="/room" class="px-6">Back to List</Link>
-        </Button>
+                <Link href="/room" class="px-6">Back to List</Link>
+              </Button>
             </div>
           </Form>
-        <!-- </Tabs> -->
-      </CardContent>
-    </Card>
-  </div>
-</AppLayout>
+          <!-- </Tabs> -->
+        </CardContent>
+      </Card>
+    </div>
+  </AppLayout>
 
-</template> 
- 
+</template>

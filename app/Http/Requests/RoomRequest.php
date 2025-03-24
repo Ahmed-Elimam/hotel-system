@@ -32,9 +32,9 @@ class RoomRequest extends FormRequest
     public function messages()
 {
     return [
-        'price.required' => 'The price is required. Please enter it in cents (e.g., 1050 for $10.50).',
-        'price.integer' => 'The price must be an integer (e.g., 1050 for $10.50, not 10.50).',
-        'price.min' => 'The price must be at least 100 cent.',
+        'price.required' => 'The price is required.',
+        'price.integer' => 'The price must be an integer.',
+        'price.min' => 'The price must be at least 100 dollar.',
     ];
 }
 

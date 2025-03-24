@@ -21,22 +21,22 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Manage Receptionists',
-        href: '/Receptionists',
+        href: '/receptionists',
         icon: LayoutGrid,
     },
     {
         title: 'Manage Clients',
-        href: '/Clients',
+        href: '/clients',
         icon: LayoutGrid,
     },
     {
         title: 'Manage Floors',
-        href: '/floor',
+        href: '/floors',
         icon: LayoutGrid,
     },
     {
         title: 'Manage Rooms',
-        href: '/room',
+        href: '/rooms',
         icon: LayoutGrid,
     },
 ];

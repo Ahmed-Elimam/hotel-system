@@ -61,31 +61,30 @@ Route::middleware(['can:approve-clients'])->group(function () {
 Route::middleware(['can:view-my-approved-clients'])->group(function () {
     Route::get('/clients/my-approved-clients', [ClientController::class, 'myApproved'])->name('clients.my_approved_clients');
 });
-
 /************************************************************************************************************************* */
-Route::middleware(['can:manage-client-reservation'])->group(function () {
-    Route::get('/client/available-rooms', [ReservationController::class, 'availableRooms'])->name('client.available_rooms');
-    Route::get('/client/reservation-form/{room}', [ReservationController::class, 'reservationForm'])->name('client.reservation_form');
-    Route::post('/client/store-reservation/{room}', [ReservationController::class, 'storeReservation'])->name('client.store_reservation');
-    Route::get('/client/my-reservations', [ReservationController::class, 'myReservations'])->name('client.my_reservations');
+Route::middleware(['can:make-reservation'])->group(function () {
+    Route::get('/reservations/my-reservations', [ReservationController::class, 'myReservations'])->name('reservations.my_reservations');
+    Route::get('/reservations/available-rooms', [ReservationController::class, 'availableRooms'])->name('reservations.available_rooms');
+    Route::get('/reservations/available-rooms/{id}', [ReservationController::class, 'makeReservationForm'])->name('reservations.make_reservation_form');
+    // Route::post('/reservations/store-reservation/{id}', [ReservationController::class, 'storeReservation'])->name('client.store_reservation');
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-floors'])->group(function () {
-    Route::get('/floor', [FloorController::class,'index'])->name('floors.index') ;
-    Route::get('/floor/create', [FloorController::class,'create'])->name('floors.create') ;
-    Route::post('/floor', [FloorController::class,'store'])->name('floors.store') ;
-    Route::get('/floor/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
-    Route::put('/floor/{id}', [FloorController::class,'update'])->name('floors.update') ;
-    Route::delete('/floor/{id}', [FloorController::class,'destory'])->name('floors.destory') ;
+    Route::get('/floors', [FloorController::class,'index'])->name('floors.index') ;
+    Route::get('/floors/create', [FloorController::class,'create'])->name('floors.create') ;
+    Route::post('/floors', [FloorController::class,'store'])->name('floors.store') ;
+    Route::get('/floors/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
+    Route::put('/floors/{id}', [FloorController::class,'update'])->name('floors.update') ;
+    Route::delete('/floors/{id}', [FloorController::class,'destory'])->name('floors.destory') ;
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-rooms'])->group(function () {
-    Route::get('/room', [RoomController::class,'index'])->name('rooms.index') ;
-    Route::get('/room/create', [RoomController::class,'create'])->name('rooms.create') ;
-    Route::post('/room', [RoomController::class,'store'])->name('rooms.store') ;
-    Route::get('/room/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
-    Route::put('/room/{id}', [RoomController::class,'update'])->name('rooms.update') ;
-    Route::delete('/room/{id}', [RoomController::class,'destroy'])->name('rooms.destroy') ;
+    Route::get('/rooms', [RoomController::class,'index'])->name('rooms.index') ;
+    Route::get('/rooms/create', [RoomController::class,'create'])->name('rooms.create') ;
+    Route::post('/rooms', [RoomController::class,'store'])->name('rooms.store') ;
+    Route::get('/rooms/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
+    Route::put('/rooms/{id}', [RoomController::class,'update'])->name('rooms.update') ;
+    Route::delete('/rooms/{id}', [RoomController::class,'destroy'])->name('rooms.destroy') ;
 });
 /************************************************************************************************************************* */
 Route::get('/notifications', function () {

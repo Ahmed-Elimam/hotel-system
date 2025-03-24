@@ -19,7 +19,7 @@
                   {{ column.header }}
                 </TableHead>
                 <TableHead>Price</TableHead>
-                <TableHead>Floor Number</TableHead>
+                <TableHead>Floor Name</TableHead>
                 <TableHead v-if="userRoles.includes('admin')">Created By</TableHead>
                   <TableHead >Actions</TableHead>
                 </TableRow>
@@ -33,7 +33,7 @@
                   {{ row.original.price/100 }}
                 </TableCell>
                 <TableCell >
-                  {{ row.original.floor.floor_number }}
+                  {{ row.original.floor.name }}
                 </TableCell>
                 <TableCell v-if="userRoles.includes('admin')">
                   {{ row.original.creator.name }}

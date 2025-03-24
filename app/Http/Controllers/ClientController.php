@@ -17,13 +17,15 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = User::role(['client','pending-client'])->get();
-        return Inertia::render('Clients/Index', ['rows' => $clients]);
+        $clients = User::role(['client', 'pending-client'])->with('country')->paginate(5);
+        return Inertia::render('Clients/Index', ['rows' => $clients,
+        'user' => auth()->user()->load('roles'),]);
     }
     public function create()
     {
         $countries = Country::all();
-        return Inertia::render('Clients/Create', ['rows'=> $countries]);
+        return Inertia::render('Clients/Create', ['rows'=> $countries,
+         'user' => auth()->user()->load('roles'),]);
     }
     public function store(ClientStoreRequest $request)
     {
@@ -58,7 +60,7 @@ class ClientController extends Controller
     {
         $client = User::findOrFail($id);
         $countries = Country::all();
-        return Inertia::render('Clients/Edit', ['row' => $client, 'rows' => $countries]);
+        return Inertia::render('Clients/Edit', ['row' => $client, 'rows' => $countries, 'user' => auth()->user()->load('roles'),]);
     }
     public function update(ClientUpdateRequest $request, $id)
     {
@@ -99,7 +101,7 @@ class ClientController extends Controller
     public function pending()
     {
         $clients = User::role('pending-client')->get();
-        return Inertia::render('Clients/Pending', ['rows' => $clients]);
+        return Inertia::render('Clients/Pending-For-Approve', ['rows' => $clients]);
     }
     public function approve($id)
     {
@@ -113,7 +115,7 @@ class ClientController extends Controller
     public function myApproved()
     {
         $clients = User::role('client')->where('approver_id',auth()->id())->get();
-        return Inertia::render('Clients/My-approved', ['rows' => $clients]);
+        return Inertia::render('Clients/My-approved-clients', ['rows' => $clients]);
     }
     public function clientsReservations()
     {
@@ -123,7 +125,7 @@ class ClientController extends Controller
         }else{
             $reservations = Reservation::with('client')->get();
         }
-        return Inertia::render('Reservations/ClientsReservations', ['reservations' => $reservations]);
+        return Inertia::render('Clients/ClientsReservations', ['rows' => $reservations]);
     }
 
 }

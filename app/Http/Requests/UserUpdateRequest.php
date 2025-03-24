@@ -26,8 +26,8 @@ class UserUpdateRequest extends FormRequest
 
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($userId)],
-            'national_id' => ['required', 'string', 'size:14', Rule::unique('users', 'national_id')->ignore($userId)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($this->route('id'))],
+            'national_id' => ['required', 'size:14', Rule::unique('users', 'national_id')->ignore($this->route('id'))],
             'avatar_image' => ['nullable', 'mimes:jpg,jpeg', 'max:2048'], 
         ];
     }

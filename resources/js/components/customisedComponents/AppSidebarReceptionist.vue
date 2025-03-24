@@ -22,13 +22,13 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Manage Floors',
-        href: '/floor',
+        href: '/floors',
         icon: LayoutGrid,
     },
 
     {
         title: 'Manage Rooms',
-        href: '/room',
+        href: '/rooms',
         icon: LayoutGrid,
     },
 ];
