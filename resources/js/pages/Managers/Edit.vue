@@ -85,7 +85,7 @@ const confirmReset = () => {
   <div class="max-w-5xl mx-auto space-y-6 p-6">
     <Card>
       <CardContent class="p-6">
-        <h1 class="text-2xl font-bold mb-6">Create New Manager</h1>
+        <h1 class="text-2xl font-bold mb-6">Edit managers's data</h1>
         
         <Tabs defaultValue="basic" class="w-full">
           <TabsList>

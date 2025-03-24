@@ -14,31 +14,26 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
-    {
-        title: 'Manage managers',
-        href: '/managers',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Manage Receptionists',
-        href: '/Receptionists',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Manage Clients',
-        href: '/Clients',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Manage Floors',
-        href: '/floor',
-        icon: LayoutGrid,
-    },
-    {
-        title: 'Manage Rooms',
-        href: '/room',
-        icon: LayoutGrid,
-    },
+    // {
+    //     title: 'Manage managers',
+    //     href: '/managers',
+    //     icon: LayoutGrid,
+    // },
+    // {
+    //     title: 'Manage Receptionists',
+    //     href: '/Receptionists',
+    //     icon: LayoutGrid,
+    // },
+    // {
+    //     title: 'Manage Clients',
+    //     href: '/Clients',
+    //     icon: LayoutGrid,
+    // },
+    // {
+    //     title: 'Manage Rooms',
+    //     href: '/room',
+    //     icon: LayoutGrid,
+    // },
 ];
 
 const footerNavItems: NavItem[] = [

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RoomRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class RoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'room_number' => 'required|integer|unique:rooms|min:1000|max:9999',
+            'room_number' => ['required', 'integer', 'min:1000', 'max:9999', Rule::unique('rooms')->ignore($this->id)],
             'capacity' => 'required|integer|min:1|max:6',
             'price' => 'required|integer|min:100',
             'floor_id' => 'required|exists:floors,id',

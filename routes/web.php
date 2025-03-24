@@ -15,8 +15,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', ['user' => auth()->user()->load('roles')]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
@@ -83,7 +85,7 @@ Route::middleware(['can:manage-rooms'])->group(function () {
     Route::post('/room', [RoomController::class,'store'])->name('rooms.store') ;
     Route::get('/room/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
     Route::put('/room/{id}', [RoomController::class,'update'])->name('rooms.update') ;
-    Route::delete('/room/{id}', [RoomController::class,'destory'])->name('rooms.destory') ;
+    Route::delete('/room/{id}', [RoomController::class,'destroy'])->name('rooms.destroy') ;
 });
 /************************************************************************************************************************* */
 Route::get('/notifications', function () {
