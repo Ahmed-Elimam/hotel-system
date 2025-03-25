@@ -39,7 +39,10 @@ public function index()
        $room_number =$request->room_number ;
        $capacity= $request->capacity;
        $price= $request->price ;
-       $is_reserved =$request->is_reserved;
+
+
+       $is_reserved =$request->is_reserved || "false" ;
+
        $floor_id=$request->floor_id ;
 
 

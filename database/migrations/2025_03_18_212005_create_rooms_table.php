@@ -21,8 +21,6 @@ return new class extends Migration
             $table->unsignedBigInteger('floor_id');
             $table->foreign('floor_id')->references('id')->on('floors');//add foriegn key constraints
 
-            $table->unsignedBigInteger('room_creator_id');
-            $table->foreign('room_creator_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
