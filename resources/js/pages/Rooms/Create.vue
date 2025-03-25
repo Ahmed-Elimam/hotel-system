@@ -17,7 +17,7 @@ const form = useForm({
   capacity: "",
   price: "",
   floor_id: "",
-  is_reserved: "",
+  // is_reserved: "",
 });
 const onSubmit = () => {
   console.log("Before submit - floor_id:", form.floor_id, "type:", typeof form.floor_id);
@@ -137,7 +137,7 @@ const breadcrumbs = [
                   </FormItem>
                 </FormField>
 
-                <FormField name="is_reserved">
+                <!-- <FormField name="is_reserved">
                   <FormItem>
                     <FormLabel>Room Status</FormLabel>
                     <Select v-model="form.is_reserved">
@@ -147,13 +147,13 @@ const breadcrumbs = [
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="0">Available</SelectItem>
-                        <SelectItem value="1">Reserved</SelectItem>
+                        <SelectItem value="false">Available</SelectItem>
+                        <SelectItem value="true">Reserved</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
                   </FormItem>
-                </FormField>
+                </FormField> -->
               </div>
             </div>
 

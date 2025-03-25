@@ -39,10 +39,6 @@ public function index()
        $room_number =$request->room_number ;
        $capacity= $request->capacity;
        $price= $request->price ;
-
-
-       $is_reserved =$request->is_reserved || "false" ;
-
        $floor_id=$request->floor_id ;
 
 
@@ -51,7 +47,6 @@ public function index()
         'capacity' => $capacity,
         'price' =>$price*100,
         'floor_id' => $floor_id,
-        'is_reserved' => $is_reserved,
         'room_creator_id' => auth()->id(),
        ]);
        return redirect()->route('rooms.index')->with('success', 'Room created successfully');
