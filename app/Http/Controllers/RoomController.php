@@ -39,7 +39,7 @@ public function index()
        $room_number =$request->room_number ;
        $capacity= $request->capacity;
        $price= $request->price ;
-       $is_reserved =$request->is_reserved ;
+       $is_reserved =$request->is_reserved;
        $floor_id=$request->floor_id ;
 
 
@@ -66,11 +66,11 @@ public function index()
             abort(403);
         }
         $capacity = $request->capacity;
-        $price = $request->price ;
+        $price = $request->price;
         $floor_id=$request->floor_id;
         $is_reserved =$request->is_reserved ;
         $room->update([
-            'capacity' => $capacity,
+            'capacity' =>$capacity,
             'price' =>$price*100,
             'floor_id' => $floor_id,
             'is_reserved' => $is_reserved,
@@ -90,5 +90,4 @@ public function index()
         }else{
             return response()->json(['error' => "You can't delete a reserved room."], 409);
         }
-    }
-    }
+    }    }
