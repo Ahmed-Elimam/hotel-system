@@ -78,18 +78,14 @@ Route::middleware(['can:make-reservation'])->group(function () {
 /************************************************************************************************************************* */
 Route::middleware(['auth:sanctum','can:manage-floors'])->group(function () {
     Route::get('/floors', [FloorController::class,'index'])->name('floors.index') ;
-    Route::get('/floors/create', [FloorController::class,'create'])->name('floors.create') ;
     Route::post('/floors', [FloorController::class,'store'])->name('floors.store') ;
-    Route::get('/floors/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
     Route::put('/floors/{id}', [FloorController::class,'update'])->name('floors.update') ;
     Route::delete('/floors/{id}', [FloorController::class,'destroy'])->name('floors.destroy') ;
 });
 /************************************************************************************************************************* */
-Route::middleware(['can:manage-rooms'])->group(function () {
+Route::middleware(['auth:sanctum','can:manage-rooms'])->group(function () {
     Route::get('/rooms', [RoomController::class,'index'])->name('rooms.index') ;
-    Route::get('/rooms/create', [RoomController::class,'create'])->name('rooms.create') ;
     Route::post('/rooms', [RoomController::class,'store'])->name('rooms.store') ;
-    Route::get('/rooms/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
     Route::put('/rooms/{id}', [RoomController::class,'update'])->name('rooms.update') ;
     Route::delete('/rooms/{id}', [RoomController::class,'destroy'])->name('rooms.destroy') ;
 });
