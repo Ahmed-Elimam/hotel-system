@@ -106,6 +106,8 @@ class ReceptionistController extends Controller
             abort(403);
         }
         $receptionist->ban();
+        $receptionist->update(['banned_at' => now()]);
+        $receptionist->tokens()->delete();
         return to_route('receptionists.index');
     }
     public function unban($id)

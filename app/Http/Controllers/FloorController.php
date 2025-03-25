@@ -26,7 +26,7 @@ class FloorController extends Controller
     public function store(Request $request)
     {
          $request->validate([
-             'name' => 'required|string|min:3',
+             'name' => 'unique:floors|required|string|min:3',
          ]);
 
          Floor::create([
@@ -47,7 +47,7 @@ class FloorController extends Controller
             abort(403);
         }
         $request->validate([
-            'name' => 'required|string|min:3',
+            'name' => 'unique:floors|required|string|min:3',
         ]);
         $floor->update($request->only('name'));
 
