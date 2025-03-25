@@ -8,11 +8,17 @@ use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 class FloorController extends Controller
 {
-    public function index()
-    {
-        $floors = Floor::with(['creator.roles'])->get();
-        return Inertia::render('Floors/Index', ['rows' => $floors]);
-    }
+
+        public function index()
+        {
+            $floors = Floor::with(['creator.roles'])->paginate(3);
+
+            return Inertia::render('Floors/Index', [
+                'rows' => $floors,
+                'user' => auth()->user()->load('roles')
+            ]);
+        }
+
     public function create()
     {
         return Inertia::render('Floors/Create');
@@ -37,7 +43,7 @@ class FloorController extends Controller
     public function update(Request $request, $id)
     {
         $floor= Floor::findOrFail($id) ;
-        if ($floor->creator_id !== auth()->id() && auth()->user()->cannot('manage-all-floors')) {
+        if ($floor->creator_id !== auth()->id() && auth()->user()->can('manage-all-floors')) {
             abort(403);
         }
         $request->validate([
@@ -48,9 +54,9 @@ class FloorController extends Controller
         return redirect()->route('floors.index');
     }
     public function destroy($id){
-        
+
         $floor= Floor::findOrFail($id) ;
-        if($floor->creator_id !== auth()->id() && auth()->user()->cannot('manage-all-floors')) {
+        if(auth()->user()->can('manage-all-floors') && $floor->creator_id !== auth()->id())  {
             abort(403);
         }
         if($floor->rooms()->exists()){

@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { ref, defineAsyncComponent } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,9 +13,9 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 
-// Define props to receive the `rows` data (countries) from the backend
+
 const props = defineProps({
-  rows: Array, // This will contain the list of countries
+  rows: Array, 
 });
 
 const form = useForm({
@@ -26,7 +26,7 @@ const form = useForm({
   national_id: "",
   phone: "",
   gender: "",
-  country_id: "", // Changed from `country` to `country_id` to match backend
+  country_id: "", 
   avatar_image: null,
 });
 
@@ -65,7 +65,15 @@ const confirmReset = () => {
   toast.info("Form has been reset");
 };
 
-import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+const userRoles = usePage().props.user.roles.map(role => role.name);
+const AppLayout = defineAsyncComponent(() =>
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    : userRoles.includes("manager") ?
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+);
 import { Head } from '@inertiajs/vue3';
 
 const breadcrumbs = [
@@ -151,7 +159,6 @@ const breadcrumbs = [
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <!-- Use the `rows` prop to populate the dropdown -->
                             <SelectItem v-for="country in rows" :key="country.id" :value="country.id">
                               {{ country.name }}
                             </SelectItem>

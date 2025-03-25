@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { ref, defineAsyncComponent } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,16 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 
-import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+const userRoles = usePage().props.user.roles.map(role => role.name);
+const AppLayout = defineAsyncComponent(() =>
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    : userRoles.includes("manager") ?
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+);
+
 import { Head } from '@inertiajs/vue3';
 
 const breadcrumbs = [
@@ -23,13 +32,13 @@ const breadcrumbs = [
   },
 ];
 
-// Define props to receive the client data and countries
+
 const props = defineProps({
-  row: Object, // Client's data
-  rows: Array, // List of countries
+  row: Object, 
+  rows: Array, 
 });
 
-// Initialize the form with the client's data
+
 const form = useForm({
   name: props.row.name || "",
   email: props.row.email || "",

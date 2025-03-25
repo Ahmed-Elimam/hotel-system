@@ -18,12 +18,14 @@ class ClientController extends Controller
     public function index()
     {
         $clients = User::role(['client', 'pending-client'])->with('country')->paginate(5);
-        return Inertia::render('Clients/Index', ['rows' => $clients]);
+        return Inertia::render('Clients/Index', ['rows' => $clients,
+        'user' => auth()->user()->load('roles'),]);
     }
     public function create()
     {
         $countries = Country::all();
-        return Inertia::render('Clients/Create', ['rows'=> $countries]);
+        return Inertia::render('Clients/Create', ['rows'=> $countries,
+         'user' => auth()->user()->load('roles'),]);
     }
     public function store(ClientStoreRequest $request)
     {
@@ -58,7 +60,7 @@ class ClientController extends Controller
     {
         $client = User::findOrFail($id);
         $countries = Country::all();
-        return Inertia::render('Clients/Edit', ['row' => $client, 'rows' => $countries]);
+        return Inertia::render('Clients/Edit', ['row' => $client, 'rows' => $countries, 'user' => auth()->user()->load('roles'),]);
     }
     public function update(ClientUpdateRequest $request, $id)
     {

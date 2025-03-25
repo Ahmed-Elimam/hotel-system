@@ -1,5 +1,5 @@
 <template>
-    <AuthBase title="Create an account" description="Enter your details below to create your account">
+    <AuthBase title="Welcome to Our Hotel " description="Enter your details below to create your account and wait for approval">
         <Head title="Register" />
 
         <form @submit.prevent="submit" class="flex flex-col gap-6">
@@ -60,14 +60,13 @@
                 <!-- Country Select Field -->
                 <div class="grid gap-2">
                     <Label for="country">Country</Label>
-                    <select id="country" v-model="form.country" required class="border rounded p-2">
+                    <select id="country" v-model="form.country_id" required class="border rounded p-2">
                         <option value="" disabled>Select Country</option>
-                        <!-- Loop through countries passed from backend -->
-                        <option v-for="country in countries" :key="country.id" :value="country.id">
+                        <option v-for="country in props.countries" :key="country.id" :value="country.id">
                             {{ country.name }}
                         </option>
                     </select>
-                    <InputError :message="form.errors.country" />
+                    <InputError :message="form.errors.country_id" />
                 </div>
 
                 <!-- Avatar Image Upload Field -->
@@ -103,9 +102,11 @@ import AuthBase from '@/layouts/AuthLayout.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 
-// Receiving countries as prop from backend
-const { countries } = defineProps({
-    countries: Array
+const props = defineProps({
+    countries: {
+        type: Array,
+        default: () => [] 
+    }
 });
 
 const form = useForm({
@@ -116,7 +117,7 @@ const form = useForm({
     national_id: '',
     phone: '',
     gender: '',
-    country: '',
+    country_id: '',
     avatar_image: null,
 });
 
@@ -142,13 +143,13 @@ const submit = () => {
     formData.append('national_id', form.national_id);
     formData.append('phone', form.phone);
     formData.append('gender', form.gender);
-    formData.append('country', form.country);
+    formData.append('country_id', form.country_id);
     if (form.avatar_image) {
         formData.append('avatar_image', form.avatar_image);
     }
 
     form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation', 'avatar_image'),
+        onFinish: () => form.reset('password_confirmation',),
         preserveScroll: true,
     });
 };

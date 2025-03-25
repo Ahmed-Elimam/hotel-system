@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3';
+import { ref, defineAsyncComponent } from 'vue';
+import { useForm, usePage } from '@inertiajs/vue3';
 import { toast } from 'vue-sonner';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -57,7 +57,15 @@ const confirmReset = () => {
   toast.info("Form has been reset");
 };
 
-import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+
+const userRoles = usePage().props.user.roles.map(role => role.name);
+const AppLayout = defineAsyncComponent(() =>
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    :     import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      
+);
 import { Head } from '@inertiajs/vue3';
 
 const breadcrumbs = [

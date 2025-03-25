@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rule;
 class UserStoreRequest extends FormRequest
 {
     /**
@@ -23,11 +23,11 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->id)],
             'password' => ['required', 'string', 'min:6'],
             'password_confirmation' => ['required', 'string', 'min:6', 'same:password'],
-            'national_id' => ['required','string', 'size:14', 'unique:users'],
-            'avatar_image' => ['mimes:jpg,jpeg', 'max:2048'],
+            'national_id' => ['required','string', 'size:14', Rule::unique('users')->ignore($this->id)],
+            'avatar_image' => ['nullable','mimes:jpg,jpeg', 'max:2048'],
         ];
     }
 }

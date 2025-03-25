@@ -85,7 +85,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed, defineProps, defineAsyncComponent } from 'vue';
 import { Link, Head, router } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -94,7 +94,16 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from "@/components/ui/alert-dialog";
 import axios from "axios";
 import { useToast } from "vue-toastification";
-import AppLayout from '@/layouts/customisedLayout/AppLayoutAdmin.vue';
+
+import { usePage } from '@inertiajs/vue3';
+const userRoles = usePage().props.user.roles.map(role => role.name);
+const AppLayout = defineAsyncComponent(() =>
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    : userRoles.includes("manager") ?
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+);
 
 const toast = useToast();
 

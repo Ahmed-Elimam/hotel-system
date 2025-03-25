@@ -15,8 +15,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', ['user' => auth()->user()->load('roles')]);
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
@@ -25,6 +27,7 @@ Route::middleware(['can:manage-managers'])->group(function () {
     Route::get('/managers', [ManagerController::class, 'index'])->name('managers.index');
     Route::get('/managers/create', [ManagerController::class, 'create'])->name('managers.create');
     Route::post('/managers', [ManagerController::class, 'store'])->name('managers.store');
+
     Route::get('/managers/{id}/edit',[ManagerController::class, 'edit'])->name('managers.edit');
     Route::put('/managers/{id}',[ManagerController::class, 'update'])->name('managers.update');
     Route::delete('/managers/{id}',[ManagerController::class, 'destroy'])->name('managers.destroy');
@@ -73,7 +76,7 @@ Route::middleware(['can:manage-floors'])->group(function () {
     Route::post('/floors', [FloorController::class,'store'])->name('floors.store') ;
     Route::get('/floors/{id}/edit', [FloorController::class,'edit'])->name('floors.edit') ;
     Route::put('/floors/{id}', [FloorController::class,'update'])->name('floors.update') ;
-    Route::delete('/floors/{id}', [FloorController::class,'destory'])->name('floors.destory') ;
+    Route::delete('/floors/{id}', [FloorController::class,'destroy'])->name('floors.destroy') ;
 });
 /************************************************************************************************************************* */
 Route::middleware(['can:manage-rooms'])->group(function () {
@@ -82,7 +85,7 @@ Route::middleware(['can:manage-rooms'])->group(function () {
     Route::post('/rooms', [RoomController::class,'store'])->name('rooms.store') ;
     Route::get('/rooms/{id}/edit', [RoomController::class,'edit'])->name('rooms.edit') ;
     Route::put('/rooms/{id}', [RoomController::class,'update'])->name('rooms.update') ;
-    Route::delete('/rooms/{id}', [RoomController::class,'destory'])->name('rooms.destory') ;
+    Route::delete('/rooms/{id}', [RoomController::class,'destroy'])->name('rooms.destroy') ;
 });
 /************************************************************************************************************************* */
 Route::get('/notifications', function () {

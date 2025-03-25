@@ -17,7 +17,8 @@ class ReceptionistController extends Controller
     public function index()
     {
         $receptionists = User::role('receptionist')->paginate(5);
-        return Inertia::render('Receptionists/Index', ['rows' => $receptionists]);
+        return Inertia::render('Receptionists/Index', ['rows' => $receptionists,
+    'user' => auth()->user()->load('roles'),]);
     }
 
     /**
@@ -26,7 +27,7 @@ class ReceptionistController extends Controller
 
     public function create()
     {
-        return Inertia::render('Receptionists/Create');
+        return Inertia::render('Receptionists/Create',['user' => auth()->user()->load('roles'),]);
     }
     public function store(UserStoreRequest $request)
     {
@@ -47,6 +48,8 @@ class ReceptionistController extends Controller
             'national_id' => $national_id,
             'avatar_image' => $avatar_image,
             'creator_id' => auth()->id(),
+            'phone' => $request->phone,
+            'gender' => $request->gender,
         ]);
         $user->assignRole('receptionist');
         return to_route('receptionists.index');
@@ -54,7 +57,7 @@ class ReceptionistController extends Controller
     public function edit($id)
     {
         $receptionist = User::find($id);
-        return Inertia::render('Receptionists/Edit', ['row' => $receptionist]);
+        return Inertia::render('Receptionists/Edit', ['row' => $receptionist,'user' => auth()->user()->load('roles')]);
     }
 
     /**
@@ -70,11 +73,9 @@ class ReceptionistController extends Controller
         $email = $request->email;
         $national_id = $request->national_id;
         if ($request->hasFile('avatar_image')) {
-            // Delete old avatar if it's not the default one
             if ($user->avatar_image && $user->avatar_image !== 'avatar.jpg') {
                 \Storage::disk('public')->delete($user->avatar_image);
             }
-            // Store new avatar
             $avatarPath = $request->file('avatar_image')->store('avatars', 'public');
             $user->update(['avatar_image' => $avatarPath]);
         }
