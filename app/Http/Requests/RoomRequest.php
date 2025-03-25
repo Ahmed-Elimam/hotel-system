@@ -27,6 +27,7 @@ class RoomRequest extends FormRequest
             'capacity' => 'required|integer|min:1|max:6',
             'price' => 'required|integer|min:1',
             'floor_id' => 'required|exists:floors,id',
+           
         ];
     }
     public function messages()
@@ -36,6 +37,7 @@ class RoomRequest extends FormRequest
         'price.integer' => 'The price must be an integer.',
         'price.min' => 'The price must be at least 100 dollar.',
         'floor_id.required' => 'The floor must be chosen.',
+        
     ];
 }
 

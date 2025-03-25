@@ -47,7 +47,7 @@ class RolePermissionSeeder extends Seeder
         // Assign specific permissions to Manager
         $managerRole->givePermissionTo([
             'manage-receptionists', 'manage-clients','approve-clients',
-            'manage-floors', 'manage-rooms' ,'manage-reservations',
+            'manage-floors', 'manage-rooms' ,'manage-reservations','view-my-approved-clients'
         ]);
 
         // Assign specific permissions to Receptionist

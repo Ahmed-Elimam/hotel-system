@@ -15,7 +15,7 @@ class ClientApprovedNotification extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
-    public function __construct($user)
+    public function __construct( $user)
     {
         $this->user = $user;
     }
@@ -33,17 +33,16 @@ class ClientApprovedNotification extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      */
-    public function toMail(object $notifiable): MailMessage
+    public function toMail($notifiable)
     {
         return (new MailMessage)
-
-
-            ->line($this->user['body'])
-            ->action($this->user['enrollmentText'],
-            $this->user['urlLoginAccount'])
-            ->line($this->user['thankYou'])
-            ->salutation('The Hotel Management Team');
-    }
+            ->subject('Welcome! Your Account is Approved')
+            ->greeting('Congratulations! '.$this->user->name.",")
+            ->line('We are pleased to inform you that your account has been approved.')
+            ->action('Login Now and make a reservation', url('/login'))
+            ->line('Thank you for choosing us!')
+            ->salutation('Best regards, Royal Crest Family');
+        }
 
     /**
      * Get the array representation of the notification.
@@ -54,7 +53,9 @@ class ClientApprovedNotification extends Notification implements ShouldQueue
     {
         return [
             'user_id' => $this->user->id,
-            'message' => 'Your account has been approved',
+            'message' => "Dear {$this->user->name}, your account has been approved!",
+            'action_url' => url('/login'),
+            'created_at' => now(),
         ];
     }
 }
