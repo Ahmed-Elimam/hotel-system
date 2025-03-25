@@ -30,7 +30,6 @@ class RoomController extends Controller
             'capacity' => $request->capacity,
             'price' => $request->price * 100,
             'floor_id' => $request->floor_id,
-            'is_reserved' => $request->is_reserved,
             'room_creator_id' => auth()->id(),
         ]);
 
@@ -48,7 +47,6 @@ class RoomController extends Controller
             'capacity' => $request->capacity,
             'price' => $request->price * 100,
             'floor_id' => $request->floor_id,
-            'is_reserved' => $request->is_reserved,
         ]);
 
         return response()->json(['message' => 'Room updated successfully', 'room' => $room], 200);
