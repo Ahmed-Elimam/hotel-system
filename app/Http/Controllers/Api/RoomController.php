@@ -12,7 +12,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rows = Room::with(['creator', 'floor:id,floor_number,name'])->paginate(5);
+        $rows = Room::with(['creator', 'floor:id,floor_number,name'])->paginate(10);
         foreach ($rows as $row) {
             $row->is_reserved = $row->is_reserved ? "Reserved" : "Available";
         }

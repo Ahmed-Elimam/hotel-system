@@ -18,7 +18,10 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = User::role(['client', 'pending-client'])->with('country')->paginate(5);
+        $clients = User::role(['client', 'pending-client'])
+        ->with('country')
+        ->orderBy('id', 'desc')
+        ->paginate(5);    
         return Inertia::render('Clients/Index', ['rows' => $clients,
         'user' => auth()->user()->load('roles'),]);
     }

@@ -50,26 +50,24 @@ Route::middleware(['auth:sanctum','can:manage-receptionists'])->group(function (
     Route::post('/receptionists/{id}/unban',[ReceptionistController::class, 'unban'])->name('receptionists.unban');
 });
 /************************************************************************************************************************* */
-Route::middleware(['can:manage-clients'])->group(function () {
+Route::middleware(['auth:sanctum','can:manage-clients'])->group(function () {
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
     Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
-    Route::get('/clients/{id}/edit',[ClientController::class, 'edit'])->name('clients.edit');
     Route::put('/clients/{id}',[ClientController::class, 'update'])->name('clients.update');
     Route::delete('/clients/{id}',[ClientController::class, 'destroy'])->name('clients.destroy');
 });
-Route::middleware(['can:manage-reservations'])->group(function () {
+Route::middleware(['auth:sanctum','can:manage-reservations'])->group(function () {
     Route::get('/clients/reservations', [ClientController::class, 'clientsReservations'])->name('clients.reservations');
 });
-Route::middleware(['can:approve-clients'])->group(function () {
+Route::middleware(['auth:sanctum','can:approve-clients'])->group(function () {
     Route::get('/clients/pending', [ClientController::class, 'pending'])->name('clients.pending');
     Route::post('/clients/{id}/approve', [ClientController::class, 'approve'])->name('clients.approve');
 });
-Route::middleware(['can:view-my-approved-clients'])->group(function () {
+Route::middleware(['auth:sanctum','can:view-my-approved-clients'])->group(function () {
     Route::get('/clients/my-approved-clients', [ClientController::class, 'myApproved'])->name('clients.my_approved_clients');
 });
 /************************************************************************************************************************* */
-Route::middleware(['can:make-reservation'])->group(function () {
+Route::middleware(['auth:sanctum','can:make-reservation'])->group(function () {
     Route::get('/reservations/my-reservations', [ReservationController::class, 'myReservations'])->name('reservations.my_reservations');
     Route::get('/reservations/available-rooms', [ReservationController::class, 'availableRooms'])->name('reservations.available_rooms');
     Route::get('/reservations/available-rooms/{id}', [ReservationController::class, 'makeReservationForm'])->name('reservations.make_reservation_form');
