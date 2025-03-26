@@ -31,7 +31,7 @@ class CreateAdmin extends Command
             'email' => $this->option('email'),
             'password' => Hash::make($this->option('password')),
         ]);
-        $admin->assignRole(roles: 'admin');
+        $admin->assignRole( 'admin');
 
     }
 }
