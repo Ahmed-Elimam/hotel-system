@@ -170,7 +170,7 @@ const columns = [
         accessorKey: 'national_id',
         header: 'National ID',
     },
-    
+
 ];
 import { router } from '@inertiajs/vue3';
 

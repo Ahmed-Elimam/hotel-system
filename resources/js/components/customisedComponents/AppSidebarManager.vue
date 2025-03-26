@@ -36,11 +36,7 @@ const mainNavItems: NavItem[] = [
         href: '/rooms',
         icon: LayoutGrid,
     },
-    {
-        title: 'Reservation Form',
-        href: '/reservations/available-rooms/',
-        icon: LayoutGrid,
-    },
+   
 
 
 ];

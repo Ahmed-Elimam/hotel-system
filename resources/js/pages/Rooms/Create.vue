@@ -66,6 +66,7 @@ const breadcrumbs = [
     href: '/add',
   },
 ];
+
 </script>
 
 <template>
