@@ -11,7 +11,7 @@ class FloorController extends Controller
 {
     public function index()
     {
-        $floors = Floor::with(['creator.roles'])->paginate(3);
+        $floors = Floor::with(['creator.roles'])->paginate(5);
 
         return response()->json([
             'success' => true,

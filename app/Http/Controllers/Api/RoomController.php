@@ -12,7 +12,7 @@ class RoomController extends Controller
 {
     public function index()
     {
-        $rows = Room::with(['creator', 'floor:id,floor_number,name'])->paginate(5);
+        $rows = Room::with(['creator', 'floor:id,floor_number,name'])->paginate(10);
         foreach ($rows as $row) {
             $row->is_reserved = $row->is_reserved ? "Reserved" : "Available";
         }
@@ -30,7 +30,6 @@ class RoomController extends Controller
             'capacity' => $request->capacity,
             'price' => $request->price * 100,
             'floor_id' => $request->floor_id,
-            'is_reserved' => $request->is_reserved,
             'room_creator_id' => auth()->id(),
         ]);
 
@@ -48,7 +47,6 @@ class RoomController extends Controller
             'capacity' => $request->capacity,
             'price' => $request->price * 100,
             'floor_id' => $request->floor_id,
-            'is_reserved' => $request->is_reserved,
         ]);
 
         return response()->json(['message' => 'Room updated successfully', 'room' => $room], 200);
