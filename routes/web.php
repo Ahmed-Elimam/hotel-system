@@ -19,7 +19,6 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
 /************************************************************************************************************************* */
@@ -95,3 +94,13 @@ Route::get('/notifications', function () {
         'all' => $user->notifications
     ]);
 });
+/**************************************************************************************************************************** */
+
+use App\Http\Controllers\PaymentController;
+
+Route::post('/createCheckoutSession', [PaymentController::class, 'createCheckoutSession'])
+    ->name('payment.create');
+Route::get('/payment/success', [PaymentController::class, 'handleSuccess'])
+    ->name('payment.success');
+Route::get('/payment/cancel', [PaymentController::class, 'handleCancel'])
+    ->name('payment.cancel');
