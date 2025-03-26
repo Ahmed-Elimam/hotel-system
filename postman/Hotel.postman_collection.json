@@ -1,0 +1,4291 @@
+{
+	"info": {
+		"_postman_id": "4a147b17-fb42-49c2-ad8d-28939e22edb8",
+		"name": "Hotel",
+		"description": "These are the Routes and Endpoints Tests for Laravel Project Hotel-System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42939902"
+	},
+	"item": [
+		{
+			"name": "Admin Requests",
+			"item": [
+				{
+					"name": "Admin>>Managers",
+					"item": [
+						{
+							"name": "Get Managers",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "api-manager",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-manager2@manager.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12348582874521",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-updated-manager",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-updated-manager@manager.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "29104010108119",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers/33",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers",
+										"33"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers/33",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers",
+										"33"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Managers."
+				},
+				{
+					"name": "Admin>>Receptionists",
+					"item": [
+						{
+							"name": "Get Receptionists",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "api-receptionist2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist2@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541223655",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/?",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Receptionist",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-receptionist-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist-updated@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541223655",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/35",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"35"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Receptionist",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/35",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"35"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ban Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23/ban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23",
+										"ban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unban Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23/unban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23",
+										"unban"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Receptionists"
+				},
+				{
+					"name": "Admin>>Floors",
+					"item": [
+						{
+							"name": "Get Floors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Floor",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "second_Floor",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Floor",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Floor_three",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Floor",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Floor has Rooms",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|HUpRJl7tYXTIOpyon8PNXBmCRMyk1iXQigS7xbQ7cfdf3721",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Floors"
+				},
+				{
+					"name": "Admin>>Rooms",
+					"item": [
+						{
+							"name": "Get Rooms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 6|flOwGL4KEAKEncNIIrL1maCZ4GlaMGeKhPuT209U1ba17456",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Room",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "room_number",
+											"value": "2025",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "15",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Room",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "room_number",
+											"value": "6532",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "17",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Room",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/8",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Rooms."
+				},
+				{
+					"name": "Admin>>Clients",
+					"item": [
+						{
+							"name": "Get Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Joe27",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "Joe27@joe.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12563214876327",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "01032852266",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "12",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Client",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Joe-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "joe-updated@goe.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12563214856324",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "01032852266",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "34",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/36",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"36"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Client",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/24",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"24"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Approve Client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/14/approve",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"14",
+										"approve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MyApproved Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/my-approved-clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"my-approved-clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clients Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/reservations",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"reservations"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Clients."
+				},
+				{
+					"name": "Admin>>Reservations",
+					"item": [
+						{
+							"name": "My Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/reservations/my-reservations",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"reservations",
+										"my-reservations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Available Rooms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|PwFeyqnZcZ8fZBJqKeRgZDoO1ixwomMUv2wOCTvm410212ec",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/reservations/available-rooms",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"reservations",
+										"available-rooms"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Reservations."
+				},
+				{
+					"name": "Admin Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@admin.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "device_name",
+									"value": "s6 edge",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/sanctum/token",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sanctum",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder has the Api testing Requests for role Admin."
+		},
+		{
+			"name": "Manager Requests",
+			"item": [
+				{
+					"name": "Manager>>Managers",
+					"item": [
+						{
+							"name": "Get Managers",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 4|4JGzDPquR3cIchnuazsz8cI7pCCTgi7V5GcxFpR3b8254885",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 4|4JGzDPquR3cIchnuazsz8cI7pCCTgi7V5GcxFpR3b8254885",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "api-manager",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-manager2@manager.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12348582874521",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 4|4JGzDPquR3cIchnuazsz8cI7pCCTgi7V5GcxFpR3b8254885",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-updated-manager",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-updated-manager@manager.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "29104010108119",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers/33",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers",
+										"33"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 4|4JGzDPquR3cIchnuazsz8cI7pCCTgi7V5GcxFpR3b8254885",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers/33",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers",
+										"33"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Managers try CRUD operations on Managers."
+				},
+				{
+					"name": "Managers>>Receptionists",
+					"item": [
+						{
+							"name": "Get Receptionists",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 4|4JGzDPquR3cIchnuazsz8cI7pCCTgi7V5GcxFpR3b8254885",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "api-receptionist3",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist3@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541223857",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Receptionist not Created by Manager",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-receptionist-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist-updated@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541228593",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Receptionist Created by Manager",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-receptionist3-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist3@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541223659",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/38",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"38"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Receptionist not Created by the Manager",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Receptionist Created by the Manager",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/37",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"37"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ban Receptionist not Created by the Manager",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23/ban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23",
+										"ban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ban Receptionist Created by the Manager",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/38/ban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"38",
+										"ban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unban Receptionist not Created by the Manager",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23/unban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23",
+										"unban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unban Receptionist Created by the Manager",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/38/unban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"38",
+										"unban"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Managers making CRUD operations on Receptionists"
+				},
+				{
+					"name": "Managers>>Floors",
+					"item": [
+						{
+							"name": "Get Floors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Floor",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Fourth_Floor",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Floor not Created by the Manager",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Floor_three",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Floor Created by the Manager",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "fourth",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Floor not Created by the Manager",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Floor Created by the Manager",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Managers making CRUD operations on Floors"
+				},
+				{
+					"name": "Managers>>Rooms",
+					"item": [
+						{
+							"name": "Get Rooms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Room",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "room_number",
+											"value": "2025",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "15",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Room not Created by the Manager",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "room_number",
+											"value": "6532",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "17",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Room  Created by the Manager",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "room_number",
+											"value": "6532",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "17",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/9",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Room not Created by the Manager",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Room Created by the Manager",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/9",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"9"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Managers making CRUD operations on Rooms."
+				},
+				{
+					"name": "Managers>>Clients",
+					"item": [
+						{
+							"name": "Get Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Mansour2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "Mansour2@client.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12563214856888",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "01032852266",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Client",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Joe-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "joe-updated@goe.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12563214856324",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "01032852266",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "34",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/36",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"36"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Client",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/41",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"41"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Approve Client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/22/approve",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"22",
+										"approve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MyApproved Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/my-approved-clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"my-approved-clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clients Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/reservations",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"reservations"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Managers making CRUD operations on Clients."
+				},
+				{
+					"name": "Manager>>Reservations",
+					"item": [
+						{
+							"name": "My Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/reservations/my-reservations",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"reservations",
+										"my-reservations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Available Rooms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|SAoU7OPYqzVlbiQ1PMZgVgms4kLv5NB2QMpKYpa868bdfc75",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/reservations/available-rooms",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"reservations",
+										"available-rooms"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Manager making operations on Reservations."
+				},
+				{
+					"name": "Manager Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "api-manager1@ahmed.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "device_name",
+									"value": "S24",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/sanctum/token",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sanctum",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder has the Api testing Requests for role Manager."
+		},
+		{
+			"name": "Receptionist Requests",
+			"item": [
+				{
+					"name": "Receptionist>>Managers",
+					"item": [
+						{
+							"name": "Get Managers",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "api-manager",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-manager2@manager.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12348582874521",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-updated-manager",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-updated-manager@manager.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "29104010108119",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers/33",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers",
+										"33"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Manager",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/managers/33",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"managers",
+										"33"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Receptionists try making CRUD operations on Managers.  \nExpected output for all endpoints =>Unauthorized"
+				},
+				{
+					"name": "Receptionist>>Receptionists",
+					"item": [
+						{
+							"name": "Get Receptionists",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "api-receptionist2",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist2@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541223655",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/?",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Receptionist",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "api-receptionist-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "api-receptionist-updated@receptionist.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "25963541223655",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/35",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"35"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Receptionist",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/35",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"35"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ban Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23/ban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23",
+										"ban"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Unban Receptionist",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/receptionists/23/unban",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"receptionists",
+										"23",
+										"unban"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Receptionist try makking CRUD operations on Receptionists.\n\nExpected output for all endpoints =>Unauthorized"
+				},
+				{
+					"name": "Receptionist>>Floors",
+					"item": [
+						{
+							"name": "Get Floors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Floor",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "second_Floor",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Floor",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Floor_three",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Floor",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Floor has Rooms",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/floors/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"floors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Receptionist try makking CRUD operations on Floors.\n\nExpected output for all endpoints =>Unauthorized"
+				},
+				{
+					"name": "Receptionist>>Rooms",
+					"item": [
+						{
+							"name": "Get Rooms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Room",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "room_number",
+											"value": "2025",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "3",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "15",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Room",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "room_number",
+											"value": "6532",
+											"type": "text"
+										},
+										{
+											"key": "capacity",
+											"value": "5",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "17",
+											"type": "text"
+										},
+										{
+											"key": "floor_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Room",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 7|c3RA6Y0PzwyOAkjQkQtwbkJiUF7MN0wKXxUWGzma11ade285",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/rooms/8",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"rooms",
+										"8"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Receptionist try makking CRUD operations on Rooms.\n\nExpected output for all endpoints =>Unauthorized"
+				},
+				{
+					"name": "Receptionist>>Clients",
+					"item": [
+						{
+							"name": "Get Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 9|6U2UIco2yMdrBIWcKKUILM7nHtH39OqFOVdYyUjm3a5745e8",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Joe27",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "Joe27@joe.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12563214876327",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "01032852266",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "12",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Client",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Joe-Updated",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "joe-updated@goe.com",
+											"type": "text"
+										},
+										{
+											"key": "national_id",
+											"value": "12563214856324",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "01032852266",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "male",
+											"type": "text"
+										},
+										{
+											"key": "country_id",
+											"value": "34",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/36",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"36"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Client",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/24",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"24"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Pending Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/pending",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"pending"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Approve Client",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/15/approve",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"15",
+										"approve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MyApproved Clients",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/my-approved-clients",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"my-approved-clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Clients Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/clients/reservations",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"clients",
+										"reservations"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Receptionist making CRUD operations on Clients."
+				},
+				{
+					"name": "Receptionist>>Reservations",
+					"item": [
+						{
+							"name": "My Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/reservations/my-reservations",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"reservations",
+										"my-reservations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Available Rooms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 10|cqI2i1EsxA7V1Jdzp5yvMfq2n4Epdbhl0j2frrSY1dd74e64",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/reservations/available-rooms",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"reservations",
+										"available-rooms"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "These are the test requests for Admins making CRUD operations on Reservations."
+				},
+				{
+					"name": "Receptionist Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "api-receptionist3@receptionist.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "device_name",
+									"value": "s6 edge",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/sanctum/token",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"sanctum",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder has the Api testing Requests for role Receptionist."
+		}
+	]
+}
