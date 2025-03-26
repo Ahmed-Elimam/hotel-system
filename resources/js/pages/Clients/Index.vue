@@ -1,4 +1,5 @@
 <template>
+
   <Head title="Clients" />
 
   <AppLayout :breadcrumbs="breadcrumbs">
@@ -36,9 +37,11 @@
                   </Avatar>
                 </TableCell>
                 <TableCell class="space-x-2">
-                  <Button class="bg-yellow-500 text-black hover:bg-yellow-600 m-2 inline-flex items-center justify-center">
-                    <Link :href="route('clients.edit', client.id)" method="get" class="w-full h-full flex items-center justify-center">
-                      Update
+                  <Button
+                    class="bg-yellow-500 text-black hover:bg-yellow-600 m-2 inline-flex items-center justify-center">
+                    <Link :href="route('clients.edit', client.id)" method="get"
+                      class="w-full h-full flex items-center justify-center">
+                    Update
                     </Link>
                   </Button>
 
@@ -71,14 +74,20 @@
         </CardContent>
       </Card>
 
-      <!-- Pagination Controls -->
-      <div class="flex items-center justify-end py-4 space-x-2">
-        <Button variant="outline" size="sm" :disabled="!rows?.prev_page_url" @click="goToPage(rows?.current_page - 1)">
-          Previous
-        </Button>
-        <Button variant="outline" size="sm" :disabled="!rows?.next_page_url" @click="goToPage(rows?.current_page + 1)">
-          Next
-        </Button>
+      <div class="flex items-center justify-between py-4">
+        <div class="text-gray-600">
+          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} reservations
+        </div>
+        <div class="flex items-center justify-end py-4 space-x-2">
+          <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url"
+            @click="goToPage(props.rows?.current_page - 1)">
+            Previous
+          </Button>
+          <Button variant="outline" size="sm" :disabled="!props.rows?.next_page_url"
+            @click="goToPage(props.rows?.current_page + 1)">
+            Next
+          </Button>
+        </div>
       </div>
     </div>
   </AppLayout>

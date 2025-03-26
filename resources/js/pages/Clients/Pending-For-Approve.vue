@@ -5,7 +5,17 @@ import { Button } from '@/components/ui/button';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog";
 import { useToast } from "vue-toastification";
-
+import { defineAsyncComponent } from 'vue';
+const userRoles = usePage().props.user.roles.map(role => role.name);
+const AppLayout = defineAsyncComponent(() =>
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    : userRoles.includes("manager") ?
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : userRoles.includes("receptionist") ?
+        import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+        : import("@/layouts/customisedLayout/AppLayoutClient.vue")
+);
 const toast = useToast();
 const props = defineProps({ rows: Array });
 
@@ -23,6 +33,9 @@ const approveClient = () => {
 </script>
 
 <template>
+  <Head title="Add Floor" />
+
+<AppLayout :breadcrumbs="breadcrumbs">
   <div class="p-6 space-y-6">
     <h1 class="text-2xl font-bold">Pending Clients</h1>
 
@@ -70,4 +83,5 @@ const approveClient = () => {
       </TableBody>
     </Table>
   </div>
+</AppLayout>
 </template>

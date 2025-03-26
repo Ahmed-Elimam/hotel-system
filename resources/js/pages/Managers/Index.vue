@@ -18,23 +18,23 @@
             <TableHeader>
               <TableRow>
                 <TableHead v-for="column in columns" :key="column.accessorKey">
-                {{ column.header }}
-              </TableHead>
-              <TableHead>Avatar Image</TableHead>
+                  {{ column.header }}
+                </TableHead>
+                <TableHead>Avatar Image</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <TableRow v-for="row in table.getRowModel().rows" :key="row.original?.id">
                 <TableCell v-for="column in columns" :key="column.accessorKey">
-                {{ row.original[column.accessorKey] }}
-              </TableCell>
-              <TableCell>
-                <Avatar>
-                  <AvatarImage  :src="`/storage/${row.original.avatar_image}`" alt="Avatar" />
+                  {{ row.original[column.accessorKey] }}
+                </TableCell>
+                <TableCell>
+                  <Avatar>
+                    <AvatarImage :src="`/storage/${row.original.avatar_image}`" alt="Avatar" />
 
-                </Avatar>
-              </TableCell>
+                  </Avatar>
+                </TableCell>
                 <TableCell class="space-x-2">
                   <!-- <Button variant="outline" @click="viewManager(manager)">View</Button> -->
                   <Button
@@ -74,24 +74,21 @@
           </Table>
         </CardContent>
       </Card>
-      <div class="flex items-center justify-end py-4 space-x-2">
-  <Button
-    variant="outline"
-    size="sm"
-    :disabled="!props.rows?.prev_page_url"
-    @click="goToPage(props.rows?.current_page - 1)"
-  >
-    Previous
-  </Button>
-  <Button
-    variant="outline"
-    size="sm"
-    :disabled="!props.rows?.next_page_url"
-    @click="goToPage(props.rows?.current_page + 1)"
-  >
-    Next
-  </Button>
-</div>
+      <div class="flex items-center justify-between py-4">
+        <div class="text-gray-600">
+          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} reservations
+        </div>
+        <div class="flex items-center justify-end py-4 space-x-2">
+          <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url"
+            @click="goToPage(props.rows?.current_page - 1)">
+            Previous
+          </Button>
+          <Button variant="outline" size="sm" :disabled="!props.rows?.next_page_url"
+            @click="goToPage(props.rows?.current_page + 1)">
+            Next
+          </Button>
+        </div>
+      </div>
 
     </div>
   </AppLayout>
@@ -118,8 +115,8 @@ const handleDelete = function (id) {
   axios.delete(route('managers.destroy', id))
     .then(response => {
       if (response.status === 204) {
-        toast.success("Record deleted successfully!", { timeout: 3000});
-        setTimeout(() => {router.get(route('managers.index'));}, 3000);
+        toast.success("Record deleted successfully!", { timeout: 3000 });
+        setTimeout(() => { router.get(route('managers.index')); }, 3000);
 
       }
     })
@@ -143,33 +140,33 @@ const breadcrumbs = [
 
 import { computed, defineProps } from 'vue';
 import {
-    getCoreRowModel,
-    getPaginationRowModel,
-    useVueTable,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useVueTable,
 } from "@tanstack/vue-table";
 
 const props = defineProps({
-    rows: Array,
-    columns: Array,
+  rows: Array,
+  columns: Array,
 });
 
 const columns = [
-    {
-        accessorKey: 'id',
-        header: 'ID',
-    },
-    {
-        accessorKey: 'name',
-        header: 'Name',
-    },
-    {
-        accessorKey: 'email',
-        header: 'Email',
-    },
-    {
-        accessorKey: 'national_id',
-        header: 'National ID',
-    },
+  {
+    accessorKey: 'id',
+    header: 'ID',
+  },
+  {
+    accessorKey: 'name',
+    header: 'Name',
+  },
+  {
+    accessorKey: 'email',
+    header: 'Email',
+  },
+  {
+    accessorKey: 'national_id',
+    header: 'National ID',
+  },
 
 ];
 import { router } from '@inertiajs/vue3';
@@ -180,10 +177,9 @@ const goToPage = (page) => {
 };
 
 const table = useVueTable({
-    data: computed(() => props.rows.data),
-    columns: computed(() => props.columns),
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+  data: computed(() => props.rows.data),
+  columns: computed(() => props.columns),
+  getCoreRowModel: getCoreRowModel(),
+  getPaginationRowModel: getPaginationRowModel(),
 });
 </script>
-

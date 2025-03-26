@@ -18,7 +18,7 @@ class ManagerController extends Controller
     {
         $managers = User::role('manager')->paginate(5);
         return Inertia::render('Managers/Index', 
-        ['rows' => $managers, 'user' => auth()->user()->load('roles')]);
+        ['rows' => $managers, 'user' => auth()->user()->load(relations: 'roles')]);
     }
     
 

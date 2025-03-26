@@ -16,19 +16,19 @@ const mainNavItems: NavItem[] = [
     },
    
     {
-        title: 'Manage Clients',
-        href: '/clients',
+        title: 'My approved clients',
+        href: '/clients/my-approved-clients',
         icon: LayoutGrid,
     },
     {
-        title: 'Manage Floors',
-        href: '/floors',
+        title: 'Pending clients',
+        href: '/clients/pending',
         icon: LayoutGrid,
     },
 
     {
-        title: 'Manage Rooms',
-        href: '/rooms',
+        title: 'My clients reservation',
+        href: '/clients/reservations',
         icon: LayoutGrid,
     },
 ];

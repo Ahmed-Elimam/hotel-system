@@ -3,7 +3,6 @@ import { Head, usePage } from "@inertiajs/vue3";
 import { defineAsyncComponent } from "vue";
 import axios from "axios";
 import PlaceholderPattern from "../components/PlaceholderPattern.vue";
-import  PaymentProcess  from "../components/customisedComponents/PaymentProcess.vue"
 const userRoles = usePage().props.user.roles.map(role => role.name);
 const AppLayout = defineAsyncComponent(() =>
   userRoles.includes("admin")
@@ -26,13 +25,6 @@ const breadcrumbs = [{ title: "Home Page", href: "#" }];
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
       
-      <PaymentProcess
-        :accompany_number="2"
-        :check_in="new Date('2024-06-01')"
-        :check_out="new Date('2024-06-05')"
-        :paid_price="80"
-        :room_id="1"
-        :room_creator_id="1" />
       <div class="grid auto-rows-min gap-4 md:grid-cols-3">
         <div class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
           <PlaceholderPattern />

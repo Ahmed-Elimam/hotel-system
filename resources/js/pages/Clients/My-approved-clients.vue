@@ -1,11 +1,24 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
-
+import { defineAsyncComponent } from 'vue';
+const userRoles = usePage().props.user.roles.map(role => role.name);
+const AppLayout = defineAsyncComponent(() =>
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    : userRoles.includes("manager") ?
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : userRoles.includes("receptionist") ?
+        import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+        : import("@/layouts/customisedLayout/AppLayoutClient.vue")
+);
 const props = defineProps({ rows: Array });
 </script>
 
 <template>
+  <Head title="Add Floor" />
+
+<AppLayout :breadcrumbs="breadcrumbs">
   <div class="p-6 space-y-6">
     <h1 class="text-2xl font-bold">My Approved Clients</h1>
 
@@ -33,4 +46,5 @@ const props = defineProps({ rows: Array });
       </TableBody>
     </Table>
   </div>
+</AppLayout>
 </template>

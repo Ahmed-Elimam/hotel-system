@@ -64,12 +64,12 @@ class PaymentController extends Controller
                 'stripe_payment_intent_id' => $session->payment_intent
             ]);
             session()->flash('success', 'Payment is confirmed');
-            return redirect()->route('managers.index');  
+            return redirect()->route('reservations.my_reservations');  
         }
 
         $payment->update(['status' => 'failed']);
         session()->flash('error','There was an error during process');
-        return redirect()->route('managers.index');    
+        return redirect()->route('reservations.make_reservation_form');    
     }
 
     public function handleCancel(Request $request)
@@ -82,7 +82,7 @@ class PaymentController extends Controller
         }
 
         session()->flash('error', 'Your request was cancelled');
-        return redirect()->route('managers.index');  
+        return redirect()->route('reservations.make_reservation_form');  
     }
 
 }

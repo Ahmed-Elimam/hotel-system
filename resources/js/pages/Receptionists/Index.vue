@@ -1,5 +1,6 @@
 <template>
-  <Head title="Managers"/>
+
+  <Head title="Managers" />
 
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="p-6 space-y-6">
@@ -16,28 +17,28 @@
             <TableHeader>
               <TableRow>
                 <TableHead v-for="column in columns" :key="column.accessorKey">
-                {{ column.header }}
-              </TableHead>
-              <TableHead>Avatar Image</TableHead>
-              <TableHead v-if="userRoles.includes('admin')">Manager name</TableHead>
-                <TableHead >Actions</TableHead>
+                  {{ column.header }}
+                </TableHead>
+                <TableHead>Avatar Image</TableHead>
+                <TableHead v-if="userRoles.includes('admin')">Manager name</TableHead>
+                <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               <TableRow v-for="row in table.getRowModel().rows" :key="row.original.id">
                 <TableCell v-for="column in columns" :key="column.accessorKey">
-                {{ row.original[column.accessorKey] }}
-              </TableCell>
-              <TableCell>
-                <Avatar>
-                  <AvatarImage  :src="`/storage/${row.original.avatar_image}`" alt="Avatar" />
-               </Avatar>
-              </TableCell>
-              <TableCell v-if="userRoles.includes('admin')">
-                {{ row.original.creator.name }}
-              </TableCell>
-              
-                <TableCell class="space-x-2" >
+                  {{ row.original[column.accessorKey] }}
+                </TableCell>
+                <TableCell>
+                  <Avatar>
+                    <AvatarImage :src="`/storage/${row.original.avatar_image}`" alt="Avatar" />
+                  </Avatar>
+                </TableCell>
+                <TableCell v-if="userRoles.includes('admin')">
+                  {{ row.original.creator.name }}
+                </TableCell>
+
+                <TableCell class="space-x-2">
                   <Button :disabled="!userRoles.includes('admin') && page.props.user.id !== row.original.creator_id"
                     class="bg-yellow-500 text-black hover:bg-yellow-600 m-2 inline-flex items-center justify-center">
                     <Link :href="route('receptionists.edit', row.original.id)" method="get"
@@ -45,15 +46,19 @@
                     Update
                     </Link>
                   </Button>
-                  <Button :disabled="!userRoles.includes('admin') && page.props.user.id !== row.original.creator_id" :class="[row.original.banned_at? 'bg-blue-500 text-black hover:bg-blue-600' : 'bg-black text-white']"  class="m-2 inline-flex items-center justify-center w-20">
-                    <Link :href="row.original.banned_at? route('receptionists.unban', row.original.id) : route('receptionists.ban', row.original.id)" method="post" class="w-full h-full flex items-center justify-center">
-                      {{ row.original.banned_at? "Unban" : "Ban" }}
+                  <Button :disabled="!userRoles.includes('admin') && page.props.user.id !== row.original.creator_id"
+                    :class="[row.original.banned_at ? 'bg-blue-500 text-black hover:bg-blue-600' : 'bg-black text-white']"
+                    class="m-2 inline-flex items-center justify-center w-20">
+                    <Link
+                      :href="row.original.banned_at ? route('receptionists.unban', row.original.id) : route('receptionists.ban', row.original.id)"
+                      method="post" class="w-full h-full flex items-center justify-center">
+                    {{ row.original.banned_at ? "Unban" : "Ban" }}
                     </Link>
                   </Button>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button :disabled="!userRoles.includes('admin') && page.props.user.id !== row.original.creator_id"
-                      type="button" variant="destructive" class="my-2 inline-flex items-center justify-center">
+                        type="button" variant="destructive" class="my-2 inline-flex items-center justify-center">
                         Delete
                       </Button>
                     </AlertDialogTrigger>
@@ -80,24 +85,21 @@
           </Table>
         </CardContent>
       </Card>
-      <div class="flex items-center justify-end py-4 space-x-2">
-  <Button
-    variant="outline"
-    size="sm"
-    :disabled="!props.rows?.prev_page_url"
-    @click="goToPage(props.rows?.current_page - 1)"
-  >
-    Previous
-  </Button>
-  <Button
-    variant="outline"
-    size="sm"
-    :disabled="!props.rows?.next_page_url"
-    @click="goToPage(props.rows?.current_page + 1)"
-  >
-    Next
-  </Button>
-</div>
+      <div class="flex items-center justify-between py-4">
+        <div class="text-gray-600">
+          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} reservations
+        </div>
+        <div class="flex items-center justify-end py-4 space-x-2">
+          <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url"
+            @click="goToPage(props.rows?.current_page - 1)">
+            Previous
+          </Button>
+          <Button variant="outline" size="sm" :disabled="!props.rows?.next_page_url"
+            @click="goToPage(props.rows?.current_page + 1)">
+            Next
+          </Button>
+        </div>
+      </div>
 
     </div>
   </AppLayout>
@@ -126,9 +128,9 @@ const handleDelete = function (id) {
   axios.delete(route('receptionists.destroy', id))
     .then(response => {
       if (response.status === 204) {
-        setTimeout(() => {router.get(route('receptionists.index'));});
-        toast.success("Record deleted successfully!", { timeout: 3000});
-        
+        setTimeout(() => { router.get(route('receptionists.index')); });
+        toast.success("Record deleted successfully!", { timeout: 3000 });
+
 
       }
     })
@@ -142,13 +144,13 @@ const handleDelete = function (id) {
 
 const userRoles = usePage().props.user.roles.map(role => role.name);
 const AppLayout = defineAsyncComponent(() =>
-userRoles.includes("admin")
-  ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
-  : userRoles.includes("manager") ?
-  import("@/layouts/customisedLayout/AppLayoutManager.vue")
-  : userRoles.includes("receptionist") ?
-  import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
-  : import("@/layouts/customisedLayout/AppLayoutClient.vue")
+  userRoles.includes("admin")
+    ? import("@/layouts/customisedLayout/AppLayoutAdmin.vue")
+    : userRoles.includes("manager") ?
+      import("@/layouts/customisedLayout/AppLayoutManager.vue")
+      : userRoles.includes("receptionist") ?
+        import("@/layouts/customisedLayout/AppLayoutReceptionist.vue")
+        : import("@/layouts/customisedLayout/AppLayoutClient.vue")
 );
 
 
@@ -165,34 +167,34 @@ const breadcrumbs = [
 
 import { computed, defineProps, defineAsyncComponent } from 'vue';
 import {
-    getCoreRowModel,
-    getPaginationRowModel,
-    useVueTable,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useVueTable,
 } from "@tanstack/vue-table";
 
 const props = defineProps({
-    rows: Array,
-    columns: Array,
+  rows: Array,
+  columns: Array,
 });
 // console.log("Floors data:", rows.floor);
 const columns = [
-    {
-        accessorKey: 'id',
-        header: 'ID',
-    },
-    {
-        accessorKey: 'name',
-        header: 'Name',
-    },
-    {
-        accessorKey: 'email',
-        header: 'Email',
-    },
-    {
-        accessorKey: 'national_id',
-        header: 'National ID',
-    },
-    
+  {
+    accessorKey: 'id',
+    header: 'ID',
+  },
+  {
+    accessorKey: 'name',
+    header: 'Name',
+  },
+  {
+    accessorKey: 'email',
+    header: 'Email',
+  },
+  {
+    accessorKey: 'national_id',
+    header: 'National ID',
+  },
+
 ];
 import { router } from '@inertiajs/vue3';
 const goToPage = (page) => {
@@ -201,13 +203,11 @@ const goToPage = (page) => {
 };
 
 const table = useVueTable({
-    data: computed(() => props.rows.data),
-    columns: computed(() => props.columns),
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
+  data: computed(() => props.rows.data),
+  columns: computed(() => props.columns),
+  getCoreRowModel: getCoreRowModel(),
+  getPaginationRowModel: getPaginationRowModel(),
 });
 </script>
 
-<style>
-
-</style>
+<style></style>
