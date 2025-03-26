@@ -11,6 +11,8 @@ import AppLayout from '@/layouts/customisedLayout/AppLayoutClient.vue';
 import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Head } from '@inertiajs/vue3';
 import { router } from '@inertiajs/vue3'
+import  PaymentProcess  from "@/components/customisedComponents/PaymentProcess.vue"
+
 
 // Define props
 const props = defineProps({
@@ -31,11 +33,12 @@ const form = useForm({
   paid_price: "",
   room_id: props.room?.id || "",
   user_id: user.id,
-  room_creator_id: props.room?.room_creator_id || ""
+  room_creator_id: props.room?.room_creator_id || "",
+  total_cost: "",
 });
 
 const goBack = () => {
-   router.visit('/reservations/available-rooms');
+  router.visit('/reservations/available-rooms');
 };
 const reservationDuration = computed(() => {
   if (form.check_in && form.check_out) {
@@ -50,19 +53,23 @@ const reservationDuration = computed(() => {
   }
   return "";
 });
+const totalCost = computed(() => {
+  return reservationDuration.value ? reservationDuration.value * (props.room.price / 100) : 0;
+});
 
-const onSubmit = () => {
-  form.post(route(''), {
-    preserveScroll: true,
-    onSuccess: () => {
-      toast.success("Reservation created successfully!");
-      form.reset();
-    },
-    onError: () => {
-      toast.error("Please fix the errors in the form.");
-    }
-  });
-};
+
+// const onSubmit = () => {
+//   form.post(route(''), {
+//     preserveScroll: true,
+//     onSuccess: () => {
+//       toast.success("Reservation created successfully!");
+//       form.reset();
+//     },
+//     onError: () => {
+//       toast.error("Please fix the errors in the form.");
+//     }
+//   });
+// };
 
 const confirmReset = () => {
   form.reset();
@@ -74,6 +81,7 @@ const breadcrumbs = [{ title: 'Reservation' }];
 </script>
 
 <template>
+
   <Head title="Create Reservation" />
 
   <AppLayout :breadcrumbs="breadcrumbs">
@@ -100,7 +108,7 @@ const breadcrumbs = [{ title: 'Reservation' }];
                   <FormItem>
                     <FormLabel>Number of Guests</FormLabel>
                     <FormControl>
-                      <Input :value="props.room.capacity" type="text"  disabled :placeholder="props.room.capacity" />
+                      <Input :value="props.room.capacity" type="text" disabled :placeholder="props.room.capacity" />
                     </FormControl>
                   </FormItem>
                 </FormField>
@@ -109,7 +117,8 @@ const breadcrumbs = [{ title: 'Reservation' }];
                   <FormItem>
                     <FormLabel>Paid Price ($ per night)</FormLabel>
                     <FormControl>
-                      <Input :value="props.room.price / 1000" type="number" step="0.01" min="0" :placeholder="props.room.price/100" disabled />
+                      <Input :value="props.room.price / 100" type="number" step="0.01" min="0"
+                        :placeholder="props.room.price / 100" disabled />
                     </FormControl>
                   </FormItem>
                 </FormField>
@@ -153,15 +162,15 @@ const breadcrumbs = [{ title: 'Reservation' }];
                   <FormItem>
                     <FormLabel>Total Cost ($)</FormLabel>
                     <FormControl>
-                      <Input :value="reservationDuration * (props.room.price / 100)" type="number" readonly disabled />
-                    </FormControl>
+                      <Input :value="totalCost" type="number" readonly disabled />                    </FormControl>
                   </FormItem>
                 </FormField>
               </div>
             </div>
 
             <div class="flex justify-center space-x-4 mt-8">
-              <Button type="submit" class="bg-blue-600 hover:bg-blue-700">Pay Now</Button>
+              <PaymentProcess :accompany_number="form.accompany_number" :check_in="new Date(form.check_in)"
+                :check_out="new Date(form.check_out)" :paid_price="totalCost" :room_id="form.room_id" :room_creator_id="form.room_creator_id" />
 
               <AlertDialog>
                 <AlertDialogTrigger asChild>

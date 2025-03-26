@@ -16,10 +16,11 @@ class ReceptionistController extends Controller
      */
     public function index()
     {
-        $receptionists = User::role('receptionist')->paginate(5);
+        $receptionists = User::role('receptionist')->with('creator')->paginate(5);
         return Inertia::render('Receptionists/Index', ['rows' => $receptionists,
     'user' => auth()->user()->load('roles'),]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
