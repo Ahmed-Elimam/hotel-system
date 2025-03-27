@@ -10,12 +10,19 @@ use App\Http\Controllers\ReceptionistController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ClientController ;
 use App\Models\User;
+use App\Models\Reservation;
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
 Route::get('dashboard', function () {
-    return Inertia::render('Dashboard', ['user' => auth()->user()->load('roles')]);
+    $reservations = Reservation::with('client')->get();
+    $reservationCountry = Reservation::with(['client.country'])->get();
+    return Inertia::render('Dashboard', [
+        'user' => auth()->user()->load('roles'),
+        'reservations' => $reservations ,
+        'reservationsByCountries' =>  $reservationCountry
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
