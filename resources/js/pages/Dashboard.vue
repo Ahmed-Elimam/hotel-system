@@ -230,7 +230,7 @@ const lineChartOptions = ref({
               Total: {{ totalReservations }}
             </p>
           </div>
-          
+
           <div class="bg-white dark:bg-gray-900 p-4 rounded-lg shadow-sm flex flex-col">
             <h2 class="text-lg font-semibold text-center text-gray-800 dark:text-white mb-3">
               Monthly Reservations Trend

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Reservation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,25 +12,18 @@ use App\Notifications\ClientApprovedNotification;
 
 use App\Models\Room;
 use App\Models\User;
+use GuzzleHttp\Client;
+
 class ReservationController extends Controller
 {
-    // }
-    // public function approveClient(User $client)
-    // {
-
-    //     $client->update([
-    //         'is_approved' => true,
-    //         'approved_by' => Auth::id(),
-    //     ]);
-    //     $client->notify(new ClientApprovedNotification($client));
-    //     return redirect()->route('receptionist.manage_clients')->with('success', 'Client approved successfully.');
-    // }
 
     public function myReservations()
     {
-        $reservations = Reservation::where('client_id', Auth::id())->get();
+        $reservations = Reservation::where('client_id', Auth::id())->with('room')->paginate(5);
+        $clientName = Auth::user()->name;
         return Inertia::render('Reservations/MyReservations', [
-            'rows' => $reservations
+            'rows' => $reservations,
+            'clientName' => $clientName,
         ]);
     }
     public function availableRooms()
@@ -54,9 +48,9 @@ class ReservationController extends Controller
     //     $check_out = Carbon::parse($request->check_out);
     //     $total_price = ($room->price)*($check_out->diffInDays($check_in));
     //     $client_id = Auth::id();
-        
+
     // }
 
-    
+
 
 }

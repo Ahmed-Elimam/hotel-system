@@ -16,6 +16,9 @@ class Reservation extends Model
         'paid_price',
         'room_id',
         'client_id',
+        'stripe_payment_intent_id',
+        'stripe_session_id',
+        'status',
     ];
     public function room()
     {
