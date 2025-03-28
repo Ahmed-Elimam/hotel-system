@@ -76,7 +76,7 @@
 
       <div class="flex items-center justify-between py-4">
         <div class="text-gray-600">
-          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} reservations
+          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} clients
         </div>
         <div class="flex items-center justify-end py-4 space-x-2">
           <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url"

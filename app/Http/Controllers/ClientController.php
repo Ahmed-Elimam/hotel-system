@@ -104,8 +104,11 @@ class ClientController extends Controller
     }
     public function pending()
     {
-        $clients = User::role('pending-client')->get();
-        return Inertia::render('Clients/Pending-For-Approve', ['rows' => $clients, 'user' => auth()->user()->load(relations: 'roles')]);
+        $clients = User::role('pending-client')->with('country')->get();
+        return Inertia::render('Clients/Pending-For-Approve', [
+            'rows' => $clients,
+            'user' => auth()->user()->load('roles'),
+        ]);
     }
     public function approve($id)
     {
@@ -120,9 +123,17 @@ class ClientController extends Controller
     }
     public function myApproved()
     {
-        $clients = User::role('client')->where('approver_id',auth()->id())->get();
-        return Inertia::render('Clients/My-approved-clients', ['rows' => $clients, 'user' => auth()->user()->load(relations: 'roles')]);
+        $clients = User::role('client')
+            ->where('approver_id', auth()->id())
+            ->with('country')
+            ->get();
+
+        return Inertia::render('Clients/My-approved-clients', [
+            'rows' => $clients,
+            'user' => auth()->user()->load('roles'),
+        ]);
     }
+
     public function clientsReservations()
     {
         if(Auth::user()->hasRole("receptionist")){

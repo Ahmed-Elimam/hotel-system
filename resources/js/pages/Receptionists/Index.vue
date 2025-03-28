@@ -4,10 +4,10 @@
 
   <AppLayout :breadcrumbs="breadcrumbs">
     <div class="p-6 space-y-6">
-      <h1 class="text-2xl font-semibold">Manage Rooms</h1>
+      <h1 class="text-2xl font-semibold">Manage Receptionists</h1>
 
       <Button class="bg-green-600 hover:bg-green-700">
-        <Link :href="route('receptionists.create')" method="get">Add Receptionis</Link>
+        <Link :href="route('receptionists.create')" method="get">Add Receptionist</Link>
       </Button>
 
 
@@ -87,7 +87,7 @@
       </Card>
       <div class="flex items-center justify-between py-4">
         <div class="text-gray-600">
-          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} reservations
+          Showing {{ rows.from }}-{{ rows.to }} of {{ rows.total }} receptionists
         </div>
         <div class="flex items-center justify-end py-4 space-x-2">
           <Button variant="outline" size="sm" :disabled="!props.rows?.prev_page_url"
